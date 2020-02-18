@@ -17,3 +17,7 @@ dependencies:
   version: 3.0.1
   repository: https://kubernetes-charts.storage.googleapis.com/
   condition: minio.enabled
+- name: nginx-ingress
+  version: 1.30.3
+  repository: https://kubernetes-charts.storage.googleapis.com/
+  condition: nginx-ingress.enabled

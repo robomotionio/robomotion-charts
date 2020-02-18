@@ -143,6 +143,12 @@ certmanager:
   enabled: false
   email:
 
+nginx-ingress:
+  enabled: true
+  controller:
+    publishService:
+      enabled: true
+
 smtp:
   enabled: false
   address: smtp.mailgun.org
@@ -156,7 +162,7 @@ registry:
 
 # Robomotion Admin Console
 admin:
-  name: robomotion-admin
+  name: admin
   image: gcr.io/robomotion/robomotion-admin
   imageTag: a9fde87f
   ingress:
@@ -164,7 +170,7 @@ admin:
 
 # Robomotion API service
 api:
-  name: robomotion-api
+  name: api
   image: gcr.io/robomotion/robomotion-api-service
   imageTag: a9fde87f
   replyMail:
@@ -175,15 +181,15 @@ api:
 
 # Robomotion Login
 auth:
-  name: robomotion-auth
+  name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: a9fde87f
+  imageTag: 29e50907
   ingress:
     path: /
 
 # Robomotion Flow Designer
 designer:
-  name: robomotion-designer
+  name: designer
   image: gcr.io/robomotion/robomotion-designer
   imageTag: a9fde87f
   ingress:
@@ -193,7 +199,7 @@ designer:
 
 # Robomotion Proxy Service
 proxy:
-  name: robomotion-proxy
+  name: proxy
   image: gcr.io/robomotion/robomotion-proxy
   imageTag: a9fde87f
   ingress:
@@ -203,13 +209,13 @@ proxy:
 
 # Robomotion Scheduler
 scheduler:
-  name: robomotion-scheduler
+  name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
   imageTag: a9fde87f
 
 # Robomotion migrations
 migrations:
-  name: robomotion-migrations
+  name: migrations
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: a9fde87f
 
