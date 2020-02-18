@@ -143,6 +143,12 @@ certmanager:
   enabled: false
   email:
 
+nginx-ingress:
+  enabled: true
+  controller:
+    publishService:
+      enabled: true
+
 smtp:
   enabled: false
   address: smtp.mailgun.org
