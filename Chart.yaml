@@ -1,14 +1,14 @@
 ---
 apiVersion: v1
-appVersion: 2020.5.1
+appVersion: 2020.7.1
 description: Web-based Robotic Process Automation (RPA) platform
 name: robomotion
-version: 1.1.0
+version: 1.7.0
 keywords:
   - rpa
   - automation
 home: https://www.robomotion.io
-icon: https://www.robomotion.io/images/logos/logo.png
+icon: https://storage.googleapis.com/robomotion/images/logo.png
 maintainers:
   - name: Robomotion Yazilim Otomayon Sistemleri A.S.
     email: support@robomotion.io
