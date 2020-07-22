@@ -191,7 +191,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: c26522e82
+  imageTag: 83ad4dc93
   ingress:
     path: /designer
     annotations:
