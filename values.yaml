@@ -130,6 +130,9 @@ minio:
     name: robomotion
     policy: none
     purge: false
+  resources:
+    requests:
+      memory: 512Mi
   persistence:
     enabled: true
     storageClass:
