@@ -204,7 +204,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 2a97849cd
+  imageTag: d1b07674d
   ingress:
     path: /proxy
     annotations:
