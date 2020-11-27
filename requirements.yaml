@@ -6,18 +6,18 @@ dependencies:
   repository: https://charts.jetstack.io
   condition: certmanager.enabled
 - name: postgresql
-  version: 9.4.1
+  version: 11.10.0
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: redis
-  version: 10.5.7
-  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 12.1.1
+  repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
 - name: minio
-  version: 5.0.33
-  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 4.1.0
+  repository: https://charts.bitnami.com/bitnami
   condition: minio.enabled
 - name: nginx-ingress
-  version: 1.41.3
-  repository: https://kubernetes-charts.storage.googleapis.com
+  version: 0.7.1
+  repository: https://helm.nginx.com/stable
   condition: nginx-ingress.enabled
