@@ -250,7 +250,7 @@ externalObjectStore:
   bucket: robomotion
 
   ## Object store access key
-  accessKey: 
+  accessKey:
 
   ## Object store secret key
   secretKey:

@@ -99,20 +99,20 @@ spec:
               secretKeyRef:
                 {{- if .Values.minio.enabled }}
                 name: {{ template "robomotion.minio.fullname" . }}
-                key: accesskey
+                key: access-key
                 {{- else }}
                 name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
-                key: accesskey
+                key: access-key
                 {{- end }}
           - name: STORE_SECRET
             valueFrom:
               secretKeyRef:
                 {{- if .Values.minio.enabled }}
                 name: {{ template "robomotion.minio.fullname" . }}
-                key: secretkey
+                key: secret-key
                 {{- else }}
                 name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
-                key: secretkey
+                key: secret-key
                 {{- end }}
           - name: POSTGRES_HOST
           {{- if .Values.postgresql.enabled }}
