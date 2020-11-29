@@ -121,15 +121,10 @@ minio:
   ## Use the minio chart dependency.
   ##
   enabled: true
-  imageTag: RELEASE.2019-02-13T19-48-27Z
   serviceType: ClusterIP
   ingress:
     path: /objects
-  defaultBucket:
-    enabled: true
-    name: robomotion
-    policy: none
-    purge: false
+  defaultBuckets: "robomotion"
   resources:
     requests:
       memory: 512Mi
@@ -167,7 +162,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 2a97849cd
+  imageTag: 906d76a2c
   ingress:
     path: /admin
 
@@ -175,7 +170,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 2a97849cd
+  imageTag: 906d76a2c
   replyMail:
   ingress:
     path: /api
@@ -186,7 +181,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: 2a97849cd
+  imageTag: 906d76a2c
   ingress:
     path: /
 
@@ -194,7 +189,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 4e5312dd0
+  imageTag: 906d76a2c
   ingress:
     path: /designer
     annotations:
@@ -204,7 +199,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: d1b07674d
+  imageTag: 906d76a2c
   ingress:
     path: /proxy
     annotations:
@@ -214,13 +209,13 @@ proxy:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: 2a97849cd
+  imageTag: 906d76a2c
 
 # Robomotion migrations
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 2a97849cd
+  imageTag: 906d76a2c
 
 ## External database configuration
 ##
