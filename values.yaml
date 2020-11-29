@@ -124,7 +124,11 @@ minio:
   serviceType: ClusterIP
   ingress:
     path: /objects
+  ## minio uses this
   defaultBuckets: "robomotion"
+  ## robomotion charts uses this
+  defaultBucket:
+    name: robomotion
   resources:
     requests:
       memory: 512Mi
