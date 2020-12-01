@@ -4,7 +4,7 @@ kind: Job
 metadata:
   name: {{ template "robomotion-migrations.fullname" . }}
 spec:
-  activeDeadlineSeconds: 360
+  activeDeadlineSeconds: 900
   backoffLimit: 1
   template:
     spec:
