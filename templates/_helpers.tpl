@@ -60,6 +60,13 @@ The robomotion-api name
 {{- end -}}
 
 {{/*
+The robomotion-logger name
+*/}}
+{{- define "robomotion-logger.name" -}}
+{{- default .Chart.Name .Values.logger.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 The robomotion-auth name
 */}}
 {{- define "robomotion-auth.name" -}}
