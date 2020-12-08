@@ -181,6 +181,16 @@ api:
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 16m
 
+# Robomotion Logger service
+logger:
+  name: logger
+  image: gcr.io/robomotion/robomotion-logger
+  imageTag: f5439ffc 
+  ingress:
+    path: /logs
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 16m
+
 # Robomotion Login
 auth:
   name: authorization
