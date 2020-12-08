@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ template "robomotion-logger.fullname" . }}
   labels:
-    app: {{ template "robomotion-şpgger.fullname" . }}
+    app: {{ template "robomotion-logger.fullname" . }}
     chart: {{ template "robomotion.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
