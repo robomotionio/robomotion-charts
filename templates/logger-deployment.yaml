@@ -1,0 +1,33 @@
+{{- $host := ( index .Values.ingress.hosts 0 ) -}}
+{{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-logger.fullname" . }}
+  labels:
+    app: {{ template "robomotion-logger.fullname" . }}
+    chart: {{ template "robomotion.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    component: {{ .Values.logger.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-logger.fullname" . }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-logger.fullname" . }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+      - name: {{ template "robomotion-logger.fullname" . }}
+        image: "{{ .Values.logger.image }}:{{ .Values.logger.imageTag }}"
+        ports:
+        - containerPort: 80
+          name: http
+      {{- if .Values.registry.secret }}
+      imagePullSecrets:
+      - name: {{ .Values.registry.secret }}
+      {{- end }}
