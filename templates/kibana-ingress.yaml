@@ -3,7 +3,7 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: kibana
-  namespace: kube-logging
+  namespace: default
   annotations:
 {{- if .Values.certmanager.enabled }}
     certmanager.k8s.io/issuer: "{{ .Release.Name }}-issuer"

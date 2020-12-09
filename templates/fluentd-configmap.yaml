@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: fluentd-conf
-  namespace: kube-logging
+  namespace: default
 data:
   kubernetes.conf: |
     <source>
