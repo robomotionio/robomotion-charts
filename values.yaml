@@ -279,5 +279,5 @@ externalRedis:
 elasticsearch:
   storage: 10Gi
   host: "elasticsearch.kube-logging.svc.cluster.local"
-  port: 9200
+  port: "9200"
   scheme: "http"
