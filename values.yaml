@@ -185,7 +185,7 @@ api:
 logger:
   name: logger
   image: gcr.io/robomotion/robomotion-logger
-  imageTag: f5439ffc 
+  imageTag: eb3fa430 
   ingress:
     path: /logs
     annotations:
@@ -281,3 +281,9 @@ elasticsearch:
   host: "elasticsearch.kube-logging.svc.cluster.local"
   port: "9200"
   scheme: "http"
+
+kibana:
+  ingress:
+    path: /kibana
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 16m

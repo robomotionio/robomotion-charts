@@ -40,4 +40,7 @@ spec:
           - name: ELASTICSEARCH_URL
             value: http://elasticsearch:9200
         ports:
-        - containerPort: 5601
+        - name: kibana
+          containerPort: 5601
+          protocol: TCP
+          targetPort: kibana

@@ -2,14 +2,14 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ template "robomotion-logger.fullname" . }}
+  name: kibana
   annotations:
 {{- if .Values.certmanager.enabled }}
     certmanager.k8s.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
 {{ toYaml .Values.ingress.annotations | indent 4 }}
-{{ toYaml .Values.logger.ingress.annotations | indent 4 }}
+{{ toYaml .Values.kibana.ingress.annotations | indent 4 }}
 spec:
 {{- if $host.tls }}
   tls:
@@ -21,7 +21,7 @@ spec:
   - host: {{ $host.name | quote }}
     http:
       paths:
-      - path: {{ .Values.logger.ingress.path }}
+      - path: {{ .Values.kibana.ingress.path }}
         backend:
-          serviceName: {{ template "robomotion-logger.fullname" . }}
-          servicePort: 80
+          serviceName: kibana
+          servicePort: 5601
