@@ -42,5 +42,3 @@ spec:
         ports:
         - name: kibana
           containerPort: 5601
-          protocol: TCP
-          targetPort: kibana
