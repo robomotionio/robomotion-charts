@@ -281,9 +281,3 @@ elasticsearch:
   host: "elasticsearch.kube-logging.svc.cluster.local"
   port: "9200"
   scheme: "http"
-
-kibana:
-  ingress:
-    path: /kibana
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: 16m
