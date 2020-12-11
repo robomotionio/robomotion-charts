@@ -6,8 +6,12 @@ metadata:
   labels:
     app: kibana
 spec:
+  type: NodePort
   ports:
-  - port: 5601
+  - port: {{ .Values.kibana.port }}
+    nodePort: {{ .Values.kibana.nodePort }}
+    targetPort: {{ .Values.kibana.targetPort }}
+    protocol: TCP
   selector:
     app: kibana
 ---

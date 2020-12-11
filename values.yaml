@@ -281,3 +281,8 @@ elasticsearch:
   host: "elasticsearch.kube-logging.svc.cluster.local"
   port: "9200"
   scheme: "http"
+
+kibana:
+  port: 5601
+  nodePort: 5601
+  targetPort: 5601
