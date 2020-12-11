@@ -284,5 +284,5 @@ elasticsearch:
 
 kibana:
   port: 5601
-  nodePort: 5601
+  nodePort: 30303
   targetPort: 5601
