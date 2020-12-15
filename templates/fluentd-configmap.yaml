@@ -2,7 +2,11 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: fluentd-conf
+  {{- if .Values.externalLogging.override }}
+  namespace: default
+  {{- else }}
   namespace: kube-logging
+  {{- end }}
 data:
   kubernetes.conf: |
     <source>

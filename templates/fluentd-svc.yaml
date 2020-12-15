@@ -2,7 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: fluentd
+  {{- if .Values.externalLogging.override }}
+  namespace: default
+  {{- else }}
   namespace: kube-logging
+  {{- end }}
   labels:
     k8s-app: fluentd-logging
 spec:
