@@ -47,7 +47,7 @@ spec:
             {{- if .Values.externalLogging.database }}
             value: {{ .Values.externalLogging.database | quote }}
             {{- else }}
-            value: {{  . Values.postgresql.postgresqlDatabase | quote }}
+            value: {{  .Values.postgresql.postgresqlDatabase | quote }}
             {{- end }}
           - name: POSTGRES_TABLE
             value: {{ .Values.externalLogging.table | quote }}
