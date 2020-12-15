@@ -1,3 +1,4 @@
+{{- if not .Values.externalLogging.override }}
 kind: Service
 apiVersion: v1
 metadata:
@@ -14,4 +15,4 @@ spec:
       name: rest
     - port: 9300
       name: inter-node
-
+{{- end }}

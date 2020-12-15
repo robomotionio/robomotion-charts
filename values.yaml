@@ -276,13 +276,50 @@ externalRedis:
   ## Redis password
   password: 
 
+## Elastic search for logging
+##
 elasticsearch:
+  ## Persistent volume storage
   storage: 10Gi
+
+  ## Elastic search host
   host: "elasticsearch.kube-logging.svc.cluster.local"
+  
+  ## Elastic search port
   port: "9200"
+
+  ## Elastic search schema
   scheme: "http"
 
+## Kibana for log visualization
+##
 kibana:
+  ## Kibana port
   port: 5601
+
+  ## Exposed port
   nodePort: 30303
+
+  ## Kibana port
   targetPort: 5601
+
+## External logging
+##
+externalLogging:
+  ## Override elasticsearch
+  override: true
+
+  ## Database host
+  host:
+
+  ## Database port
+  port: 
+
+  ## Database user
+  user:
+
+  ## Database password
+  password:
+
+  ## Database name
+  database:

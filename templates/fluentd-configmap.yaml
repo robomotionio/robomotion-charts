@@ -12,7 +12,21 @@ data:
       body_size_limit 32m
       keepalive_timeout 10s
     </source>
-
+{{- if .Values.externalLogging.override }}
+    <match **>
+      type pgjson
+      host "#{ENV['POSTGRES_HOST']}"
+      port "#{ENV['POSTGRES_PORT']}"
+      sslmode "#{ENV['POSTGRES_SSL_MODE']}"
+      database "#{ENV['POSTGRES_DB']}"
+      table "#{ENV['POSTGRES_TABLE']}"
+      user "#{ENV['POSTGRES_USER']}"
+      password "#{ENV['POSTGRES_PASSWORD']}"
+      time_col created_at
+      tag_col tag
+      record_col msg
+    </match>
+{{- else }}
     <match **>
        @type elasticsearch
        @id out_es
@@ -56,3 +70,4 @@ data:
          retry_forever true
        </buffer>
     </match>
+{{- end }}

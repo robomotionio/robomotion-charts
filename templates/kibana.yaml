@@ -1,3 +1,4 @@
+{{- if not .Values.externalLogging.override }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -46,3 +47,4 @@ spec:
         ports:
         - name: kibana
           containerPort: 5601
+{{- end }}

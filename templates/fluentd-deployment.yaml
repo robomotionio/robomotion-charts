@@ -24,12 +24,49 @@ spec:
       - name: fluentd
         image: fluent/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
         env:
+          {{- if .Values.externalLogging.override }}
+          - name: POSTGRES_HOST
+            {{- if .Values.externalLogging.host }}
+            value: {{ .Values.externalLogging.host }}
+            {{- else }}
+            value: {{ template "robomotion.postgresql.fullname" . }}
+            {{- end }}
+          - name: POSTGRES_PORT
+            {{- if .Values.externalLogging.port }}
+            value: {{ .Values.externalLogging.port }}
+            {{- else }}
+            value: {{ .Values.postgresql.service.port | quote }} 
+            {{- end }}
+          - name: POSTGRES_DB
+            {{- if .Values.externalLogging.database }}
+            value: {{ .Values.externalLogging.database }}
+            {{- else }}
+            value: {{  .Values.externalDatabase.database | quote }}
+            {{- end }}
+          - name: POSTGRES_USER
+            {{- if .Values.externalLogging.user }}
+            value: {{ .Values.externalLogging.user }}
+            {{- else }}
+            value: {{ .Values.postgresql.postgresqlUsername | quote}}
+            {{- end }}
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                {{- if .Values.postgresql.enabled }}
+                name: {{ template "robomotion.postgresql.fullname" . }}
+                key: postgresql-password
+                {{- else }}
+                name: {{ printf "%s-%s" .Release.Name "external-logging-db"  }}
+                key: password
+                {{- end }}
+          {{- else }}
           - name:  FLUENT_ELASTICSEARCH_HOST
             value: {{ .Values.elasticsearch.host }}
           - name:  FLUENT_ELASTICSEARCH_PORT
             value: {{ .Values.elasticsearch.port | quote }}
           - name: FLUENT_ELASTICSEARCH_SCHEME
             value: {{ .Values.elasticsearch.scheme }}
+          {{- end }}
         ports:
         - containerPort: 24231
           hostPort: 24231
