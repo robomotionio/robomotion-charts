@@ -29,7 +29,11 @@ spec:
           name: http
         env:
           - name: FLUENTD_HOST
+            {{- if .Values.externalLogging.override }}
             value: {{ .Values.logger.fluentd.host | quote }}
+            {{- else }}
+            value: {{ .Values.logger.fluentd.hostEs | quote }}
+            {{- end }}
           - name: FLUENTD_PORT
             value: {{ .Values.logger.fluentd.port | quote }}
           - name: REDIS_SCHEME
