@@ -323,3 +323,9 @@ externalLogging:
 
   ## Database name
   database:
+
+  ## SQL Connection SSL Mode
+  sslMode: disable
+
+  ## SQL Table to insert logs
+  table: workspace.logs

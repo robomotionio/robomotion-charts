@@ -1,5 +1,6 @@
+{{- if not .Values.externalLogging.override }}
 kind: Namespace
 apiVersion: v1
 metadata:
   name: kube-logging
-
+{{- end }}
