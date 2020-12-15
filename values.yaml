@@ -185,7 +185,10 @@ api:
 logger:
   name: logger
   image: gcr.io/robomotion/robomotion-logger
-  imageTag: eb3fa430 
+  imageTag: f2401def 
+  fluentd:
+    host: fluentd.default.svc.cluster.local
+    port: 9880
   ingress:
     path: /logs
     annotations:

@@ -28,6 +28,10 @@ spec:
         - containerPort: 80
           name: http
         env:
+          - name: FLUENTD_HOST
+            value: {{ .Values.logger.fluentd.host | quote }}
+          - name: FLUENTD_PORT
+            value: {{ .Values.logger.fluentd.port | quote }}
           - name: REDIS_SCHEME
             value: {{ default "redis" .Values.redis.scheme }}
           - name: REDIS_HOST
