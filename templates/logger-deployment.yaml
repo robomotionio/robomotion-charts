@@ -28,6 +28,42 @@ spec:
         - containerPort: 80
           name: http
         env:
+          {{- if .Values.externalLogging.override }}
+          - name: POSTGRES_HOST
+            {{- if .Values.externalLogging.host }}
+            value: {{ .Values.externalLogging.host | quote }}
+            {{- else }}
+            value: {{ template "robomotion.postgresql.fullname" . }}
+            {{- end }}
+          - name: POSTGRES_PORT
+            {{- if .Values.externalLogging.port }}
+            value: {{ .Values.externalLogging.port | quote }}
+            {{- else }}
+            value: {{ .Values.postgresql.service.port | quote }}
+            {{- end }}
+          - name: POSTGRES_DB
+            {{- if .Values.externalLogging.database }}
+            value: {{ .Values.externalLogging.database | quote }}
+            {{- else }}
+            value: {{  .Values.postgresql.postgresqlDatabase | quote }}
+            {{- end }}
+          - name: POSTGRES_USER
+            {{- if .Values.externalLogging.user }}
+            value: {{ .Values.externalLogging.user | quote }}
+            {{- else }}
+            value: {{ .Values.postgresql.postgresqlUsername | quote }}
+            {{- end }}
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                {{- if .Values.postgresql.enabled }}
+                name: {{ template "robomotion.postgresql.fullname" . }}
+                key: postgresql-password
+                {{- else }}
+                name: {{ printf "%s-%s" .Release.Name "external-logging-db"  }}
+                key: password
+                {{- end }}
+          {{- end }}
           - name: FLUENTD_HOST
             {{- if .Values.externalLogging.override }}
             value: {{ .Values.logger.fluentd.host | quote }}

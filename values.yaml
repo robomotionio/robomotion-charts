@@ -185,7 +185,7 @@ api:
 logger:
   name: logger
   image: gcr.io/robomotion/robomotion-logger
-  imageTag: f2401def 
+  imageTag: 3c86dffb 
   fluentd:
     host: fluentd.default.svc.cluster.local
     hostEs: fluentd.kube-logging.svc.cluster.local
