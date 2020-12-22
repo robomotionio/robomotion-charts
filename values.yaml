@@ -166,7 +166,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 906d76a2c
+  imageTag: fd6b7c83
   ingress:
     path: /admin
 
