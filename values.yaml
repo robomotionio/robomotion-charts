@@ -234,7 +234,7 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 6c33648e
+  imageTag: fd6b7c83
 
 ## External database configuration
 ##
