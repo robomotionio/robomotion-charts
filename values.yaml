@@ -183,9 +183,10 @@ api:
 
 # Robomotion Logger service
 logger:
+  host: robomotion-logger.default.svc.cluster.local
   name: logger
   image: gcr.io/robomotion/robomotion-logger
-  imageTag: 3c86dffb 
+  imageTag: eb6c39d0
   fluentd:
     host: fluentd.default.svc.cluster.local
     hostEs: fluentd.kube-logging.svc.cluster.local

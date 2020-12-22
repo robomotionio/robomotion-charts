@@ -34,6 +34,8 @@ spec:
           - name: APP_URL
             value: {{ $appURL }}
           - name: SESSION_STORE_KEY
+          - name: LOG_API_URL
+            value: {{ Values.logger.host }}
             valueFrom:
               secretKeyRef:
                 name: {{ printf "%s-%s" .Release.Name "session-store"  }}
