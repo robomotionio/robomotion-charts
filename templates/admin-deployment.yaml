@@ -35,7 +35,7 @@ spec:
             value: {{ $appURL }}
           - name: LOG_API_URL
             value: {{ .Values.logger.host }}
-          - name: ON_DEMAND
+          - name: ON_PREM
             value: "true"
           {{- if .Values.externalLogging.override }}
           - name: EXTERNAL_LOGGING
