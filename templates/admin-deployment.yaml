@@ -35,6 +35,12 @@ spec:
             value: {{ $appURL }}
           - name: LOG_API_URL
             value: {{ .Values.logger.host }}
+          - name: ON_DEMAND
+            value: "true"
+          {{- if .Values.externalLogging.override }}
+          - name: EXTERNAL_LOGGING
+            value: "true"
+          {{- end }}
           - name: SESSION_STORE_KEY
             valueFrom:
               secretKeyRef:
