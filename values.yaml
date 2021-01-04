@@ -166,7 +166,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 906d76a2c
+  imageTag: 5014ce36
   ingress:
     path: /admin
 
@@ -178,6 +178,21 @@ api:
   replyMail:
   ingress:
     path: /api
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 16m
+
+# Robomotion Logger service
+logger:
+  host: robomotion-logger.default.svc.cluster.local
+  name: logger
+  image: gcr.io/robomotion/robomotion-logger
+  imageTag: eb6c39d0
+  fluentd:
+    host: fluentd.default.svc.cluster.local
+    hostEs: fluentd.kube-logging.svc.cluster.local
+    port: 9880
+  ingress:
+    path: /logs
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 16m
 
@@ -219,7 +234,7 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 906d76a2c
+  imageTag: fd6b7c83
 
 ## External database configuration
 ##
@@ -265,3 +280,57 @@ externalRedis:
 
   ## Redis password
   password: 
+
+## Elastic search for logging
+##
+elasticsearch:
+  ## Persistent volume storage
+  storage: 10Gi
+
+  ## Elastic search host
+  host: "elasticsearch.kube-logging.svc.cluster.local"
+  
+  ## Elastic search port
+  port: "9200"
+
+  ## Elastic search schema
+  scheme: "http"
+
+## Kibana for log visualization
+##
+kibana:
+  ## Kibana port
+  port: 5601
+
+  ## Exposed port
+  nodePort: 30303
+
+  ## Kibana port
+  targetPort: 5601
+
+## External logging
+##
+externalLogging:
+  ## Override elasticsearch
+  override: true
+
+  ## Database host
+  host:
+
+  ## Database port
+  port: 
+
+  ## Database user
+  user:
+
+  ## Database password
+  password:
+
+  ## Database name
+  database:
+
+  ## SQL Connection SSL Mode
+  sslMode: disable
+
+  ## SQL Table to insert logs
+  table: workspace.logs
