@@ -1,9 +1,9 @@
 ---
 apiVersion: v1
-appVersion: 2021.01.16
+appVersion: 2021.01.22
 description: Web-based Robotic Process Automation (RPA) platform
 name: robomotion
-version: 1.11.6
+version: 1.12.1
 keywords:
   - rpa
   - automation
