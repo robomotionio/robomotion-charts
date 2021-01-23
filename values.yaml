@@ -174,7 +174,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: db34f59f
+  imageTag: 522985c6
   replyMail:
   ingress:
     path: /api
@@ -213,13 +213,13 @@ proxy:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: 4299a31c
+  imageTag: 76de82f8
 
 # Robomotion migrations
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 4299a31c
+  imageTag: a9a28858
 
 ## External database configuration
 ##
