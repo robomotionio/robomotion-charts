@@ -166,7 +166,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: c99041787
+  imageTag: ad6d8654c
   ingress:
     path: /admin
 
@@ -174,7 +174,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: c99041787
+  imageTag: ad6d8654c
   replyMail:
   ingress:
     path: /api
@@ -185,7 +185,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: c99041787
+  imageTag: ad6d8654c
   ingress:
     path: /
 
@@ -193,7 +193,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: c99041787
+  imageTag: ad6d8654c
   ingress:
     path: /designer
     annotations:
@@ -203,7 +203,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: c99041787
+  imageTag: ad6d8654c
   ingress:
     path: /proxy
     annotations:
@@ -213,7 +213,7 @@ proxy:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: c99041787
+  imageTag: ad6d8654c
 
 # Robomotion migrations
 migrations:
