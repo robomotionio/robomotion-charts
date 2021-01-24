@@ -174,7 +174,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: f7e2b1b02
+  imageTag: ad6d8654c
   replyMail:
   ingress:
     path: /api
@@ -213,7 +213,7 @@ proxy:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: f7e2b1b02
+  imageTag: ad6d8654c
 
 # Robomotion migrations
 migrations:
