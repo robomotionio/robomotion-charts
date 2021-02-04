@@ -26,6 +26,6 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   condition: grafana.enabled
 - name: prometheus
-  version: latest
+  version: 2.24.1
   repository: https://charts.bitnami.com/bitnami
   condition: prometheus.enabled
