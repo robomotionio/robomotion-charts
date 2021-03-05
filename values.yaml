@@ -53,7 +53,20 @@ kube-prometheus:
           # metrics_path defaults to '/metrics'
           # scheme defaults to 'http'.
           static_configs:
-            - targets: ['localhost:9091','robomotion-proxy:80']
+            - targets: ['robomotion-proxy:80']
+
+prometheus:
+  enabled: true
+  additionalScrapeConfigs:
+    enabled: true
+    type: internal
+    internal:
+      jobList:
+        - job_name: 'robomotion-proxy'
+          # metrics_path defaults to '/metrics'
+          # scheme defaults to 'http'.
+          static_configs:
+            - targets: ['robomotion-proxy:80']
 
 ## Configuration values for the postgresql dependency.
 ## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
