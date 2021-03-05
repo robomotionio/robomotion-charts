@@ -42,7 +42,7 @@ service:
   type: ClusterIP
   port: 80
 
-prometheus:
+kube-prometheus:
   enabled: true
   additionalScrapeConfigs:
     enabled: true
