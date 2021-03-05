@@ -42,6 +42,18 @@ service:
   type: ClusterIP
   port: 80
 
+prometheus:
+  additionalScrapeConfigs:
+    enabled: true
+    type: internal
+    internal:
+      jobList:
+        - job_name: 'robomotion-proxy'
+          # metrics_path defaults to '/metrics'
+          # scheme defaults to 'http'.
+          static_configs:
+            - targets: ['robomotion-proxy:80']
+
 ## Configuration values for the postgresql dependency.
 ## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
 ##
