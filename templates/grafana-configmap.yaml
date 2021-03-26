@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-ini-config
+data:
+  grafana.ini: |-
+    [server]
+    root_url = {{ .Values.grafana.config.rootUrl }}
+    serve_from_sub_path = true
+
+    [auth.anonymous]
+    enabled = true
+
+    [auth]
+    disable_login_form = true
