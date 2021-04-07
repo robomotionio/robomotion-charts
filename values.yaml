@@ -209,6 +209,16 @@ proxy:
     annotations:
       nginx.org/websocket-services: "ws-svc"    
 
+# Robomotion App Service
+app:
+  name: app
+  image: gcr.io/robomotion/robomotion-app
+  imageTag: 28b860969
+  ingress:
+    path: /app
+    annotations:
+      nginx.org/websocket-services: "ws-svc"    
+
 # Robomotion Scheduler
 scheduler:
   name: scheduler
