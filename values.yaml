@@ -213,7 +213,7 @@ proxy:
 app:
   name: app
   image: gcr.io/robomotion/robomotion-app
-  imageTag: 28b860969
+  imageTag: c3c4906f
   ingress:
     path: /app
     annotations:
