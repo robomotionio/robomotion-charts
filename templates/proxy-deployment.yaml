@@ -56,10 +56,10 @@ spec:
                 key: password
                 {{- end }}
           - name: RABBIT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: rabbit-default-user
-              key: username
+            valueFrom:
+              secretKeyRef:
+                name: rabbit-default-user
+                key: username
           - name: RABBIT_PASSWORD
             valueFrom:
               secretKeyRef:
