@@ -51,6 +51,16 @@ spec:
                 name: {{ printf "%s-%s" .Release.Name "external-redis"  }}
                 key: password
                 {{- end }}
+          - name: RABBIT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: rabbit-default-user
+              key: username
+          - name: RABBIT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: rabbit-default-user
+                key: password
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
