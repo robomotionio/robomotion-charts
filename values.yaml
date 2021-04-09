@@ -281,9 +281,4 @@ externalRedis:
   port:
 
   ## Redis password
-  password: 
-
-rabbitmq:
-  ## Use the rabbitmq chart dependency.
-  ##
-  enabled: true
+  password:
