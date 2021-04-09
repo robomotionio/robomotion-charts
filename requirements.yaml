@@ -21,7 +21,3 @@ dependencies:
   version: 3.16.1
   repository: https://kubernetes.github.io/ingress-nginx
   condition: nginx-ingress.enabled
-- name: rabbitmq
-  version: 8.11.6
-  repository: https://charts.bitnami.com/bitnami
-  condition: rabbitmq.enabled
