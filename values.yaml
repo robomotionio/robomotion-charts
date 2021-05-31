@@ -238,6 +238,11 @@ migrations:
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 1523f1399
 
+userApps:
+  name: user-apps
+  ingress:
+    path: /apps
+
 ## External database configuration
 ##
 externalDatabase:
