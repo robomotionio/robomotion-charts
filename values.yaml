@@ -229,13 +229,13 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 0b651eab
+  imageTag: 649a0a88
 
 # Robomotion User Console
 user:
   name: user-console
   image: gcr.io/robomotion/robomotion-user
-  imageTag: 0b651eab
+  imageTag: 649a0a88
   ingress:
     path: /user
 
