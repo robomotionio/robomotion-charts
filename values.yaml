@@ -239,6 +239,11 @@ user:
   ingress:
     path: /user
 
+userApps:
+  name: user-apps
+  ingress:
+    path: /apps
+
 ## External database configuration
 ##
 externalDatabase:
