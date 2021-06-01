@@ -25,5 +25,5 @@ spec:
       - image: nginx
         name: nginx
         volumeMounts:
-        - name: {{ template "robomotion.nginx.fullname" . }}
+        - name: {{ template "robomotion.minio.fullname" . }}
           mountPath: /usr/share/nginx/html
