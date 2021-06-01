@@ -174,7 +174,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 649a0a88
+  imageTag: 23ed220a
   replyMail:
   ingress:
     path: /api
