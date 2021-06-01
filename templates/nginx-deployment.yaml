@@ -1,17 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    run: nginx
   name: {{ template "robomotion.nginx.fullname" . }}
+  labels:
+    app: {{ template "robomotion.nginx.fullname" . }}
+    run: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
+      app: {{ template "robomotion.nginx.fullname" . }}
       run: nginx
   template:
     metadata:
       labels:
+        app: {{ template "robomotion.nginx.fullname" . }}
         run: nginx
     spec:
       volumes:
