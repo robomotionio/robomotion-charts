@@ -22,5 +22,5 @@ spec:
       paths:
       - path: {{ .Values.userApps.ingress.path }}
         backend:
-          serviceName: {{ template "robomotion.minio.fullname" . }}
-          servicePort: 9000
+          serviceName: {{ template "robomotion.nginx.fullname" . }}
+          servicePort: 80
