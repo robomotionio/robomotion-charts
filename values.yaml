@@ -117,6 +117,9 @@ redis:
   cluster:
     enabled: false
 
+nginx:
+  name: nginx
+
 minio:
   ## Use the minio chart dependency.
   ##
