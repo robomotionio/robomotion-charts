@@ -136,6 +136,8 @@ minio:
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
+  defaultAppBucket:
+    name: apps
   resources:
     requests:
       memory: 512Mi
@@ -278,8 +280,11 @@ externalObjectStore:
   ## Object store location
   location:
 
-  ## Object store buckect name
+  ## Object store bucket name
   bucket: robomotion
+
+  ## App object store bucket name
+  bucket: apps
 
   ## Object store access key
   accessKey:
