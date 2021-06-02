@@ -14,7 +14,7 @@ spec:
   - name: http
     port: {{ .Values.service.port }}
     protocol: TCP
-    targetPort: http
+    targetPort: {{ .Values.service.port }}
 
   selector:
     app: {{ template "robomotion.nginx.fullname" . }}
