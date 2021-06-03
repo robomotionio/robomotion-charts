@@ -186,7 +186,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: "53651996"
+  imageTag: 5b18bdf4
   replyMail:
   ingress:
     path: /api
@@ -247,7 +247,7 @@ migrations:
 user:
   name: user-console
   image: gcr.io/robomotion/robomotion-user
-  imageTag: 649a0a88
+  imageTag: 5b18bdf4
   ingress:
     path: /user
 
