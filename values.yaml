@@ -227,9 +227,10 @@ app:
   image: gcr.io/robomotion/robomotion-app
   imageTag: 0b651eab
   ingress:
-    path: /app/
+    path: /mq
     annotations:
-      nginx.org/websocket-services: "ws-svc"    
+      nginx.org/websocket-services: "ws-svc"
+      nginx.ingress.kubernetes.io/rewrite-target: $2
 
 # Robomotion Scheduler
 scheduler:

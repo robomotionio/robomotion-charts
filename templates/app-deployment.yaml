@@ -24,9 +24,7 @@ spec:
         ports:
         - containerPort: 80
           name: http
-        env:    
-          - name: APP_PATH
-            value: {{ .Values.app.ingress.path }}
+        env:
           - name: REDIS_SCHEME
             value: {{ default "redis" .Values.redis.scheme }}
           - name: REDIS_HOST
