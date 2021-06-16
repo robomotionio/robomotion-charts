@@ -29,8 +29,10 @@ spec:
         - containerPort: 80
           name: http
         env:
-          - name: DOMAIN
+          - name: ORIGIN
             value: {{ $host.name }}
+          - name: HOME_URL
+            value: https://www.robomotion.io
           - name: API_URL
             value: {{ $apiURL }}
           - name: APP_URL
