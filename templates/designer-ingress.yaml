@@ -14,7 +14,7 @@ spec:
 {{- if $host.tls }}
   tls:
   - hosts:
-    - {{ $host.name }}
+    - {{ .Values.designer.ingress.hostname | default $host.name }}
     secretName: {{ $host.tlsSecret }}
 {{- end }}
   rules:
