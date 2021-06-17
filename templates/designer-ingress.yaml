@@ -13,11 +13,10 @@ metadata:
 spec:
 {{- if $host.tls }}
   tls:
-  - hosts:
   {{- if $host.multiTenant }}
-    - secretName: {{ $host.wildSecret }}
+  - secretName: {{ $host.wildSecret }}
   {{- else -}}
-    - secretName: {{ $host.tlsSecret }}
+  - secretName: {{ $host.tlsSecret }}
   {{- end }}
 {{- end }}
   rules:
