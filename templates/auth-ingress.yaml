@@ -13,7 +13,7 @@ spec:
 {{- if $host.tls }}
   tls:
   - hosts:
-    - {{ .Values.auth.ingress.hostname | default $host.name }}
+    - "{{ .Values.auth.ingress.hostname | default $host.name }}"
     secretName: {{ $host.tlsSecret }}
 {{- end }}
   rules:
