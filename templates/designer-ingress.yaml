@@ -14,11 +14,18 @@ spec:
 {{- if $host.tls }}
   tls:
   - hosts:
-    - "{{ .Values.designer.ingress.hostname | default $host.name }}"
-    secretName: {{ $host.tlsSecret }}
+  {{- if $host.multiTenant }}
+    - secretName: {{ $host.wildSecret }}
+  {{- else -}}
+    - secretName: {{ $host.tlsSecret }}
+  {{- end }}
 {{- end }}
   rules:
-  - host: {{ $host.name | quote }}
+{{- if $host.multiTenant }}
+  - host: "*.{{ $host.name }}"
+{{- else -}}
+  - host: "{{ $host.name }}"
+{{- end }}
     http:
       paths:
       - path: {{ .Values.designer.ingress.path }}

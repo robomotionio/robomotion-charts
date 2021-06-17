@@ -17,11 +17,11 @@ ingress:
   hosts:
     - name: robomotion.local
       # Set this to true in order to enable TLS on the ingress record
-      tls: false
+      tls: true
       ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
       tlsSecret: robomotion-local-tls
       ## Set this to true if multi tenant
-      multiTenant: false
+      multiTenant: true
       ## If TLS and multiTenant is set to true, you must declare what secret will store the wildcard key/certificate for TLS
       wildSecret: wild-robomotion-local-tls
 
