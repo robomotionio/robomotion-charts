@@ -1,4 +1,13 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
+
+{{- if $host.multiTenant }}
+    {{- $hostName := "*.$host.name" -}}
+    {{- $secretName := $host.wildSecret -}}
+{{- else -}}
+    {{- $hostName := "$host.name" -}}
+    {{- $secretName := $host.tlsSecret -}}
+{{- end }}
+
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -13,11 +22,11 @@ spec:
 {{- if $host.tls }}
   tls:
   - hosts:
-    - "{{ .Values.api.ingress.hostname | default $host.name }}"
-    secretName: {{ $host.tlsSecret }}
+    - {{ $hostName }}
+    secretName: {{ $secretName }}
 {{- end }}
   rules:
-  - host: {{ .Values.api.ingress.hostname | default $host.name }}
+  - host: {{ .Values.admin.ingress.hostname | default $hostName }}
     http:
       paths:
       - path: {{ .Values.admin.ingress.path }}
