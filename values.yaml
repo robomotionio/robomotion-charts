@@ -17,9 +17,13 @@ ingress:
   hosts:
     - name: robomotion.local
       # Set this to true in order to enable TLS on the ingress record
-      tls: false
+      tls: true
       ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
-      tlsSecret: robomotion.local-tls
+      tlsSecret: robomotion-local-tls
+      ## Set this to true if multi tenant
+      multiTenant: false
+      ## If TLS and multiTenant is set to true, you must declare what secret will store the wildcard key/certificate for TLS
+      wildSecret: wild-robomotion-local-tls
 
   secrets:
   ## If you're providing your own certificates, please use this to add the certificates as secrets
@@ -141,9 +145,12 @@ minio:
     ##
     size: 3Gi
 
+# https://cert-manager.io/docs/configuration/acme/
+# solver should be http01 or dns01
 certmanager:
   enabled: false
   email:
+  solver: http01
 
 nginx-ingress:
   enabled: true

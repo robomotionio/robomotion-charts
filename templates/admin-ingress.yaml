@@ -10,14 +10,24 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
 {{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
-{{- if $host.tls }}
+  {{ if $host.tls }}
   tls:
+  {{ if $host.multiTenant }}
   - hosts:
-    - "{{ .Values.api.ingress.hostname | default $host.name }}"
+    - "*.{{ $host.name }}"
+    secretName: {{ $host.wildSecret }}
+  {{ else }}
+  - hosts:
+    - {{ $host.name }}
     secretName: {{ $host.tlsSecret }}
-{{- end }}
+  {{ end }}
+  {{ end }}
   rules:
-  - host: {{ .Values.api.ingress.hostname | default $host.name }}
+{{ if $host.multiTenant }}
+  - host: "*.{{ $host.name }}"
+{{ else }}
+  - host: {{ $host.name }}
+{{ end }}
     http:
       paths:
       - path: {{ .Values.admin.ingress.path }}

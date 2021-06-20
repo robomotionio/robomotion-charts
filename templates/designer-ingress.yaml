@@ -11,14 +11,24 @@ metadata:
 {{ toYaml .Values.ingress.annotations | indent 4 }}
 {{ toYaml .Values.designer.ingress.annotations | indent 4 }}
 spec:
-{{- if $host.tls }}
+  {{ if $host.tls }}
   tls:
+  {{ if not $host.multiTenant }}
   - hosts:
-    - "{{ .Values.designer.ingress.hostname | default $host.name }}"
+    - {{ $host.name }}
     secretName: {{ $host.tlsSecret }}
-{{- end }}
+  {{ else }}
+  - hosts:
+    - "*.{{ $host.name }}"
+    secretName: {{ $host.wildSecret }}
+  {{ end }}
+  {{ end }}
   rules:
-  - host: {{ $host.name | quote }}
+{{ if $host.multiTenant }}
+  - host: "*.{{ $host.name }}"
+{{ else }}
+  - host: "{{ $host.name }}"
+{{ end }}
     http:
       paths:
       - path: {{ .Values.designer.ingress.path }}
