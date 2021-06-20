@@ -21,7 +21,7 @@ ingress:
       ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
       tlsSecret: robomotion-local-tls
       ## Set this to true if multi tenant
-      multiTenant: true
+      multiTenant: false
       ## If TLS and multiTenant is set to true, you must declare what secret will store the wildcard key/certificate for TLS
       wildSecret: wild-robomotion-local-tls
 
