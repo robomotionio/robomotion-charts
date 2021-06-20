@@ -192,7 +192,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: 1523f1399
+  imageTag: 1e6af83da
   ingress:
     path: /
 
