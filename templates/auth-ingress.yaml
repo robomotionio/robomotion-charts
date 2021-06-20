@@ -10,13 +10,17 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
 {{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
-  {{- if $host.tls }}
+  {{ if $host.tls }}
   tls:
-  - secretName: {{ $host.tlsSecret }}
-  {{- if $host.multiTenant }}
-  - secretName: {{ $host.wildSecret }}
-  {{- end }}
-{{- end }}
+  - hosts:
+    - {{ $host.name }}
+    secretName: {{ $host.tlsSecret }}
+  {{ if $host.multiTenant }}
+  - hosts:
+    - "*.{{ $host.name }}"
+    secretName: {{ $host.wildSecret }}
+  {{ end }}
+  {{ end }}
   rules:
   - host: {{ $host.name | quote }}
     http:
@@ -25,7 +29,7 @@ spec:
         backend:
           serviceName: {{ template "robomotion-auth.fullname" . }}
           servicePort: 80
-{{- if $host.multiTenant }}
+{{ if $host.multiTenant }}
   - host: "*.{{ $host.name }}"
     http:
       paths:
@@ -33,4 +37,4 @@ spec:
         backend:
           serviceName: {{ template "robomotion-auth.fullname" . }}
           servicePort: 80
-{{- end }}
+{{ end }}
