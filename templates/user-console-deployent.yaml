@@ -1,6 +1,7 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
 {{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
 {{- $apiURL := printf "%s://%s%s" $scheme ( .Values.api.ingress.hostname | default $host.name ) .Values.api.ingress.path -}}
+{{- $authURL := printf "%s://%s%s" $scheme ( .Values.auth.ingress.hostname | default $host.name ) .Values.auth.ingress.path -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -30,6 +31,8 @@ spec:
         env:
           - name: API_URL
             value: {{ $apiURL }}
+          - name: AUTH_URL
+            value: {{ $authURL }}
           - name: SESSION_STORE_KEY
             valueFrom:
               secretKeyRef:
