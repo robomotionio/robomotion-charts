@@ -5,7 +5,7 @@ metadata:
 data:
   grafana.ini: |-
     [server]
-    root_url = {{ .Values.grafana.config.rootUrl }}
+    root_url = /api/monitoring
     serve_from_sub_path = true
 
     [auth.anonymous]
@@ -13,3 +13,403 @@ data:
 
     [auth]
     disable_login_form = true
+
+    [security]
+    allow_embedding = true
+    disable_gravatar = true
+---
+apiVersion: v1
+data:
+  alert_notification.html: "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"
+    \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n
+    \       <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"
+    />\n        <meta name=\"viewport\" content=\"width=device-width\" />\n\n<style>body
+    {\nwidth: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust:
+    100%; margin: 0; padding: 0;\n}\nimg {\noutline: none; text-decoration: none;
+    -ms-interpolation-mode: bicubic; width: auto; float: left; clear: both; display:
+    block;\n}\nbody {\ncolor: #2795b6; font-family: \"Helvetica\", \"Arial\", sans-serif;
+    font-weight: normal; padding: 0; margin: 0; text-align: left; line-height: 1.3;\n}\nbody
+    {\nfont-size: 14px; line-height: 19px;\n}\na:hover {\ncolor: #2795b6 !important;\n}\na:active
+    {\ncolor: #2795b6 !important;\n}\na:visited {\ncolor: #2ba6cb !important;\n}\nbody
+    {\nfont-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none;\n}\na:hover
+    {\ncolor: #ff8f2b !important;\n}\na:active {\ncolor: #F2821E !important;\n}\na:visited
+    {\ncolor: #E67612 !important;\n}\n.better-button:hover a {\ncolor: #FFFFFF !important;
+    background-color: #F2821E; border: 1px solid #F2821E;\n}\n.better-button:visited
+    a {\ncolor: #FFFFFF !important;\n}\n.better-button:active a {\ncolor: #FFFFFF
+    !important;\n}\n.better-button-alt:hover a {\ncolor: #ff8f2b !important; background-color:
+    #DDDDDD; border: 1px solid #F2821E;\n}\n.better-button-alt:visited a {\ncolor:
+    #ff8f2b !important;\n}\n.better-button-alt:active a {\ncolor: #ff8f2b !important;\n}\nbody
+    {\nheight: 100% !important; width: 100% !important;\n}\nbody .copy {\n-ms-text-size-adjust:
+    100%; -webkit-text-size-adjust: 100%;\n}\n.ExternalClass {\nwidth: 100%;\n}\n.ExternalClass
+    {\nline-height: 100%;\n}\nimg {\n-ms-interpolation-mode: bicubic;\n}\nimg {\nborder:
+    0 !important; outline: none !important; text-decoration: none !important;\n}\na:hover
+    {\ntext-decoration: underline;\n}\n@media only screen and (max-width: 600px) {\n
+    \ table[class=\"body\"] center {\n    min-width: 0 !important;\n  }\n  table[class=\"body\"]
+    .container {\n    width: 95% !important;\n  }\n  table[class=\"body\"] .row {\n
+    \   width: 100% !important; display: block !important;\n  }\n  table[class=\"body\"]
+    .wrapper {\n    display: block !important; padding-right: 0 !important;\n  }\n
+    \ table[class=\"body\"] .columns {\n    table-layout: fixed !important; float:
+    none !important; width: 100% !important; padding-right: 0px !important; padding-left:
+    0px !important; display: block !important;\n  }\n  table[class=\"body\"] table.columns
+    td {\n    width: 100% !important;\n  }\n  table[class=\"body\"] .columns td.six
+    {\n    width: 50% !important;\n  }\n  table[class=\"body\"] .columns td.twelve
+    {\n    width: 100% !important;\n  }\n  table[class=\"body\"] table.columns td.expander
+    {\n    width: 1px !important;\n  }\n  .logo {\n    margin-left: 10px;\n  }\n}\n@media
+    (max-width: 600px) {\n  table[class=\"email-container\"] {\n    width: 95% !important;\n
+    \ }\n  img[class=\"fluid\"] {\n    width: 100% !important; max-width: 100% !important;
+    height: auto !important; margin: auto !important;\n  }\n  img[class=\"fluid-centered\"]
+    {\n    width: 100% !important; max-width: 100% !important; height: auto !important;
+    margin: auto !important;\n  }\n  img[class=\"fluid-centered\"] {\n    margin:
+    auto !important;\n  }\n  td[class=\"comms-content\"] {\n    padding: 20px !important;\n
+    \ }\n  td[class=\"stack-column\"] {\n    display: block !important; width: 100%
+    !important; direction: ltr !important;\n  }\n  td[class=\"stack-column-center\"]
+    {\n    display: block !important; width: 100% !important; direction: ltr !important;\n
+    \ }\n  td[class=\"stack-column-center\"] {\n    text-align: center !important;\n
+    \ }\n  td[class=\"copy\"] {\n    font-size: 14px !important; line-height: 24px
+    !important; padding: 0 30px !important;\n  }\n  td[class=\"copy -center\"] {\n
+    \   font-size: 14px !important; line-height: 24px !important; padding: 0 30px
+    !important;\n  }\n  td[class=\"copy -bold\"] {\n    font-size: 14px !important;
+    line-height: 24px !important; padding: 0 30px !important;\n  }\n  td[class=\"small-text\"]
+    {\n    font-size: 14px !important; line-height: 24px !important; padding: 0 30px
+    !important;\n  }\n  td[class=\"mini-centered-text\"] {\n    font-size: 14px !important;
+    line-height: 24px !important; padding: 15px 30px !important;\n  }\n  td[class=\"copy
+    -padd\"] {\n    padding: 0 40px !important;\n  }\n  span[class=\"sep\"] {\n    display:
+    none !important;\n  }\n  td[class=\"mb-hide\"] {\n    display: none !important;
+    height: 0 !important;\n  }\n  td[class=\"spacer mb-shorten\"] {\n    height: 25px
+    !important;\n  }\n  .two-up td {\n    width: 270px;\n  }\n}\n</style></head>\n<body
+    leftmargin=\"0\" topmargin=\"0\" marginwidth=\"0\" marginheight=\"0\" class=\"main\"
+    style=\"height: 100% !important; width: 100% !important; min-width: 100%; -webkit-text-size-adjust:
+    none; -ms-text-size-adjust: 100%; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; text-align:
+    left; line-height: 19px; font-size: 14px; -webkit-font-smoothing: antialiased;
+    margin: 0 auto; padding: 0;\" bgcolor=\"#2e2e2e\">\n\n        <table class=\"body\"
+    style=\"border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align:
+    left; height: 100%; width: 100%; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0;\" bgcolor=\"#2e2e2e\">\n                <tr style=\"vertical-align:
+    top; padding: 0;\" align=\"left\">\n                        <td class=\"center\"
+    align=\"center\" valign=\"top\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0;\">\n        <center
+    style=\"width: 100%; min-width: 580px;\">\n                                        <table
+    class=\"row header\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: left; width: 100%; position: relative; margin-top: 25px; margin-bottom:
+    25px; padding: 0px;\">\n                                                <tr style=\"vertical-align:
+    top; padding: 0;\" align=\"left\">\n                                                  <td
+    class=\"center\" align=\"center\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0;\" valign=\"top\">\n
+    \                                                   <center style=\"width: 100%;
+    min-width: 580px;\">\n\n                                                      <table
+    class=\"container\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;\">\n                                                        <tr
+    style=\"vertical-align: top; padding: 0;\" align=\"left\">\n                                                          <td
+    class=\"wrapper last\" style=\"word-break: break-word; -webkit-hyphens: auto;
+    -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; position:
+    relative; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 10px 0px 0px;\" align=\"left\" valign=\"top\">\n\n                                                            <table
+    class=\"twelve columns\" style=\"border-spacing: 0; border-collapse: collapse;
+    vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding:
+    0;\">\n                                                              <tr style=\"vertical-align:
+    top; padding: 0;\" align=\"left\">\n                                                                <td
+    class=\"twelve sub-columns center\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    min-width: 0px; width: 100%; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0px 10px 10px 0px;\" align=\"center\" valign=\"top\">\n
+    \                             <img class=\"logo\" src=\"https://storage.googleapis.com/latif-repository/monitoring/logo.PNG\"
+    style=\"width: 200px; display: inline; outline: none !important; text-decoration:
+    none !important; -ms-interpolation-mode: bicubic; clear: both; border: 0;\" align=\"none\"
+    />\n                            </td>\n                            <td class=\"expander\"
+    style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens:
+    auto; border-collapse: collapse !important; visibility: hidden; width: 0px; color:
+    #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0;\" align=\"left\"
+    valign=\"top\"></td>\n                          </tr>\n                                                            </table>\n\n
+    \                                                         </td>\n                                                        </tr>\n
+    \                                                     </table>\n\n                                                    </center>\n
+    \                                                 </td>\n                                                </tr>\n
+    \                                       </table>\n\n                                        <table
+    class=\"container\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;\" width=\"600\"
+    bgcolor=\"#efefef\">\n                                                <tr style=\"vertical-align:
+    top; padding: 0;\" align=\"left\">\n                                                        <td
+    height=\"2\" class=\"spacer mb-shorten\" style=\"font-size: 0; line-height: 0;
+    mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-image: linear-gradient(to
+    right, #ffed00 0%, #f26529 75%); height: 2px !important; word-break: break-word;
+    -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse
+    !important; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 0; padding: 0; border: 0;\" valign=\"top\"
+    align=\"left\"> </td>\n                                                </tr>\n
+    \                                               <tr style=\"vertical-align: top;
+    padding: 0;\" align=\"left\">\n                                                        <td
+    class=\"mini-centered-text\" style=\"color: #343b41; mso-table-lspace: 0pt; mso-table-rspace:
+    0pt; word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens:
+    auto; border-collapse: collapse !important; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 0; padding: 25px 35px; font: 400 16px/27px
+    'Helvetica Neue', Helvetica, Arial, sans-serif;\" align=\"center\" valign=\"top\">\n
+    \                                                               {{Subject .Subject
+    \"{{.Title}}\"}}\n\n<table class=\"row\" style=\"border-spacing: 0; border-collapse:
+    collapse; vertical-align: top; text-align: left; width: 100%; position: relative;
+    display: block; padding: 0px;\">\n  <tr style=\"vertical-align: top; padding:
+    0;\" align=\"left\">\n    <td class=\"wrapper last\" style=\"word-break: break-word;
+    -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse
+    !important; position: relative; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 10px 0px 0px;\" align=\"left\" valign=\"top\">\n      <table
+    class=\"twelve columns\" style=\"border-spacing: 0; border-collapse: collapse;
+    vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding:
+    0;\">\n        <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n
+    \         <td class=\"center\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0px 0px 10px;\"
+    align=\"center\" valign=\"top\">\n            <h3 style=\"/*text-align: center*/;
+    color: {{.SeverityColor}}; font-weight: bold; font-style: italic; font-family:
+    'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; line-height:
+    1.3; word-break: normal; font-size: 22px; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 10px 0; padding: 0;\" align=\"left\">{{.Title}}</h3>\n
+    \         </td>\n        </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n\n<table
+    class=\"row\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: left; width: 100%; position: relative; display: block; padding:
+    0px;\">\n  <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n    <td
+    class=\"last\" style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens:
+    auto; hyphens: auto; border-collapse: collapse !important; color: #222222; font-family:
+    'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight:
+    normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 0; padding: 0 0px 0 0;\" align=\"left\"
+    valign=\"top\">\n      <table class=\"twelve columns\" style=\"border-spacing:
+    0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px;
+    margin: 0 auto; padding: 0;\">\n        <tr style=\"vertical-align: top; padding:
+    0;\" align=\"left\">\n          <td class=\"center\" style=\"word-break: break-word;
+    -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse
+    !important; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0px 0px 10px;\" align=\"center\" valign=\"top\">\n            <p style=\"/*text-align:
+    center*/; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0 0 10px; padding: 0;\" align=\"left\">{{.Message}}</p>\n          </td>\n        </tr>\n
+    \     </table>\n    </td>\n  </tr>\n</table>\n\n{{if ne .Error \"\" }}\n<table
+    class=\"row\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: left; width: 100%; position: relative; display: block; padding:
+    0px;\">\n  <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n    <td
+    class=\"last\" style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens:
+    auto; hyphens: auto; border-collapse: collapse !important; color: #222222; font-family:
+    'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight:
+    normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 0; padding: 0 0px 0 0;\" align=\"left\"
+    valign=\"top\">\n      <center style=\"width: 100%; min-width: 580px;\">\n      <table
+    class=\"twelve columns\" style=\"border-spacing: 0; border-collapse: collapse;
+    vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding:
+    0;\">\n        <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n
+    \         <td class=\"twelve last\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    width: 100%; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0px 0px 10px;\" align=\"left\" valign=\"top\">\n            <h5 style=\"font-weight:
+    bold; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; line-height: 1.3; word-break: normal; font-size:
+    18px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0;\" align=\"left\">Error message</h5>\n          </td>\n        </tr>\n
+    \       <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n          <td
+    class=\"twelve last\" style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens:
+    auto; hyphens: auto; border-collapse: collapse !important; width: 100%; color:
+    #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0px 0px 10px;\"
+    align=\"left\" valign=\"top\">\n            <p style=\"color: #222222; font-family:
+    'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight:
+    normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: none; margin: 0 0 10px; padding: 0;\" align=\"left\">{{.Error}}</p>\n
+    \         </td>\n        </tr>\n      </table>\n      </center>\n    </td>\n  </tr>\n</table>\n{{end}}\n\n{{if
+    ne .State \"ok\" }}\n<table class=\"row\" style=\"border-spacing: 0; border-collapse:
+    collapse; vertical-align: top; text-align: left; width: 100%; position: relative;
+    display: block; padding: 0px;\">\n  <tr style=\"vertical-align: top; padding:
+    0;\" align=\"left\">\n    <td class=\"last\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0 0px 0 0;\"
+    align=\"left\" valign=\"top\">\n      <center style=\"width: 100%; min-width:
+    580px;\">\n      <table class=\"twelve columns\" style=\"border-spacing: 0; border-collapse:
+    collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto;
+    padding: 0;\">\n        <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n
+    \         <td class=\"six\" style=\"word-break: break-word; -webkit-hyphens: auto;
+    -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; width:
+    50%; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0px 0px 10px;\" align=\"left\" valign=\"top\">\n            <h5 style=\"font-weight:
+    bold; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; line-height: 1.3; word-break: normal; font-size:
+    18px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0;\" align=\"left\">Metric name</h5>\n          </td>\n          <td
+    class=\"six last\" style=\"width: 100px; word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0px 0px 10px;\"
+    align=\"right\" valign=\"top\">\n            <h5 style=\"font-weight: bold; color:
+    #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif; line-height: 1.3; word-break: normal; font-size: 18px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0;\" align=\"right\">Value</h5>\n
+    \         </td>\n        </tr>\n        {{range .EvalMatches}}\n        <tr style=\"vertical-align:
+    top; padding: 0;\" align=\"left\">\n          <td class=\"six\" style=\"word-break:
+    break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse:
+    collapse !important; width: 50%; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0px 0px 10px;\" align=\"left\" valign=\"top\">\n            <h5
+    class=\"data\" style=\"color: #222222; font-family: 'Open Sans', 'Helvetica Neue',
+    'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3;
+    word-break: normal; font-size: 16px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0;\" align=\"left\">{{.Metric}}</h5>\n          </td>\n
+    \         <td class=\"six last\" style=\"width: 100px; word-break: break-word;
+    -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse
+    !important; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0px 0px 10px;\" align=\"right\" valign=\"top\">\n            <h5 class=\"data\"
+    style=\"color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; word-break:
+    normal; font-size: 16px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0;\" align=\"right\">{{.Value}}</h5>\n          </td>\n
+    \       </tr>\n        {{end}}\n      </table>\n      </center>\n    </td>\n  </tr>\n</table>\n{{end}}\n\n<table
+    class=\"row\" style=\"border-spacing: 0; border-collapse: collapse; vertical-align:
+    top; text-align: left; width: 100%; position: relative; display: block; padding:
+    0px;\">\n    <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n
+    \   <td class=\"wrapper last\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    position: relative; color: #222222; font-family: 'Open Sans', 'Helvetica Neue',
+    'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px;
+    font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 10px 0px 0px;\" align=\"left\" valign=\"top\">\n      <table
+    class=\"twelve columns\" style=\"border-spacing: 0; border-collapse: collapse;
+    vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding:
+    0;\">\n        <tr style=\"vertical-align: top; padding: 0;\" align=\"left\">\n
+    \         <td class=\"center\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica,
+    Arial, sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 0px 0px 10px;\"
+    align=\"center\" valign=\"top\">\n            {{if ne .ImageLink \"\" }}\n              <img
+    src=\"{{.ImageLink}}\" alt=\"Alerting Panel\" style=\"outline: none !important;
+    text-decoration: none !important; -ms-interpolation-mode: bicubic; width: auto;
+    clear: both; display: block; border: 0;\" align=\"left\" />\n            {{end}}\n
+    \           {{if ne .EmbeddedImage \"\" }}\n              <img src=\"cid:{{.EmbeddedImage}}\"
+    alt=\"Alerting Panel\" style=\"outline: none !important; text-decoration: none
+    !important; -ms-interpolation-mode: bicubic; width: auto; clear: both; display:
+    block; border: 0;\" align=\"left\" />\n            {{end}}\n          </td>\n
+    \       </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n\n\n<table class=\"row\"
+    style=\"border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align:
+    left; width: 100%; position: relative; display: block; padding: 0px;\">\n  <tr
+    style=\"vertical-align: top; padding: 0;\" align=\"left\">\n    <td class=\"wrapper
+    last\" style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto;
+    hyphens: auto; border-collapse: collapse !important; position: relative; color:
+    #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', Helvetica, Arial,
+    sans-serif; font-weight: normal; line-height: 19px; font-size: 14px; -webkit-font-smoothing:
+    antialiased; -webkit-text-size-adjust: none; margin: 0; padding: 10px 0px 0px;\"
+    align=\"left\" valign=\"top\">\n      <table class=\"twelve columns\" style=\"border-spacing:
+    0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px;
+    margin: 0 auto; padding: 0;\">\n        <tr style=\"vertical-align: top; padding:
+    0;\" align=\"left\">\n       \n            <td class=\"center six\" style=\"word-break:
+    break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse:
+    collapse !important; width: 50%; color: #222222; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; margin: 0; padding: 0px 0px 10px;\" align=\"center\" valign=\"top\">\n            <table
+    class=\"better-button\" align=\"center\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\"
+    style=\"border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align:
+    left; margin-top: 10px; margin-bottom: 20px; padding: 0;\">\n              <tr
+    style=\"vertical-align: top; padding: 0;\" align=\"left\">\n                <td
+    align=\"center\" class=\"better-button-alt\" bgcolor=\"#efefef\" style=\"word-break:
+    break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse:
+    collapse !important; color: #222222; font-family: 'Open Sans', 'Helvetica Neue',
+    'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px;
+    font-size: 14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust:
+    none; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px;
+    margin: 0; padding: 0px;\" valign=\"top\">\n                  <a href=\"https://app.robomotion.io/signin/workspace\"
+    target=\"_blank\" style=\"color: #ff8f2b; text-decoration: none; -webkit-border-radius:
+    2px; -moz-border-radius: 2px; border-radius: 2px; display: inline-block; background-color:
+    #EFEFEF; padding: 12px 25px; border: 1px solid #ff8f2b;\"> Go to Robomotion</a>\n
+    \               </td>\n              </tr>\n            </table>\n          </td>\n
+    \       </tr>\n      </table>\n    </td>\n  </tr>\n</table>\n\n\n\n\n                                                        </td>\n
+    \                                               </tr>\n                                        </table>\n\n
+    \                                       <table class=\"footer center\" style=\"border-spacing:
+    0; border-collapse: collapse; vertical-align: top; text-align: center; color:
+    #999999; margin-top: 20px; padding: 0;\" bgcolor=\"#2e2e2e\">\n                                                <tr
+    style=\"vertical-align: top; padding: 0;\" align=\"left\">\n                                                        <td
+    class=\"wrapper last\" style=\"word-break: break-word; -webkit-hyphens: auto;
+    -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; position:
+    relative; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 10px 20px 0px 0px;\" align=\"left\" valign=\"top\">\n                                                                <table
+    class=\"twelve columns center\" style=\"border-spacing: 0; border-collapse: collapse;
+    vertical-align: top; text-align: center; width: 580px; margin: 0 auto; padding:
+    0;\">\n                                                                        <tr
+    style=\"vertical-align: top; padding: 0;\" align=\"left\">\n                                                                                <td
+    class=\"twelve\" align=\"center\" style=\"word-break: break-word; -webkit-hyphens:
+    auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important;
+    width: 100%; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0px 0px 10px;\" valign=\"top\">\n                                                                                        <center
+    style=\"width: 100%; min-width: 580px;\">\n                                                                                                <p
+    style=\"font-size: 12px; color: #999999; font-family: 'Open Sans', 'Helvetica
+    Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-weight: normal; line-height:
+    19px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0 0 10px; padding: 0;\" align=\"center\">\n                                                                                                        Sent
+    by <a href=\"https://robomotion.io/\" style=\"color: #E67612; text-decoration:
+    none;\">Robomotion </a>\n                                                                                                        <br
+    />© 2021 Robomotion RPA\n                                                                                                </p>\n
+    \                                                                                       </center>\n
+    \                                                                               </td>\n
+    \                                                                               <td
+    class=\"expander\" style=\"word-break: break-word; -webkit-hyphens: auto; -moz-hyphens:
+    auto; hyphens: auto; border-collapse: collapse !important; visibility: hidden;
+    width: 0px; color: #222222; font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica',
+    Helvetica, Arial, sans-serif; font-weight: normal; line-height: 19px; font-size:
+    14px; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: none; margin:
+    0; padding: 0;\" align=\"left\" valign=\"top\"></td>\n                                                                        </tr>\n
+    \                                                               </table>\n                                                        </td>\n
+    \                                               </tr>\n                                        </table>\n
+    \                               </center>\n                        </td>\n                </tr>\n
+    \       </table>\n</body>\n</html>\n"
+    
+  alert_notification_example.html: |
+    <!DOCTYPE html>
+    <html>
+    <body>
+
+    <h1>Robomotion</h1>
+
+    <p>My first paragraph.</p>
+
+    </body>
+    </html>
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2021-05-18T14:09:39Z"
+  name: emails
+  namespace: default
+  resourceVersion: "9260863"
+  selfLink: /api/v1/namespaces/default/configmaps/emails
+  uid: 616913de-7704-41b0-9f96-4f43631487db
+

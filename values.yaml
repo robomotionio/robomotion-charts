@@ -173,7 +173,7 @@ nginx-ingress:
 
 smtp:
   enabled: false
-  address: smtp.mailgun.org
+  address: 
   port: 2525
   user:
   password:
@@ -186,7 +186,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 48041d8de
+  imageTag: 2ed27b66
   ingress:
     path: /admin
 
@@ -194,7 +194,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 522985c6
+  imageTag: 9558e5d6
   replyMail:
   ingress:
     path: /api
@@ -213,7 +213,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 48041d8de
+  imageTag: 2ed27b66
   ingress:
     path: /designer
     annotations:
@@ -223,7 +223,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 4299a31c
+  imageTag: 2ed27b66
   ingress:
     path: /proxy
     annotations:
