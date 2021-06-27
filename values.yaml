@@ -173,7 +173,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
   ingress:
     path: /admin
 
@@ -181,7 +181,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
   replyMail:
   ingress:
     path: /api
@@ -192,7 +192,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: 1e6af83da
+  imageTag: 6e8a0753c
   ingress:
     path: /
 
@@ -200,7 +200,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
   ingress:
     path: /designer
     annotations:
@@ -210,7 +210,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
   ingress:
     path: /proxy
     annotations:
@@ -220,13 +220,13 @@ proxy:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
 
 # Robomotion migrations
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 1523f1399
+  imageTag: 6e8a0753c
 
 ## External database configuration
 ##
