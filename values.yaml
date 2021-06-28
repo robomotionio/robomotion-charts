@@ -59,7 +59,7 @@ kube-prometheus:
 grafana:
   config:
     rootUrl: "/api/monitoring"
-    useGrafanaIniFile: true
+    #useGrafanaIniFile: true
     #grafanaIniConfigMap: grafana-ini-config
 
 ## Configuration values for the postgresql dependency.
