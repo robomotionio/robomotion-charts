@@ -56,11 +56,11 @@ kube-prometheus:
             static_configs:
               - targets: ['robomotion-proxy:80']
 
-# grafana:
-#   config:
-#     rootUrl: "/api/monitoring"
-    #useGrafanaIniFile: true
-    #grafanaIniConfigMap: grafana-ini-config
+grafana:
+  config:
+    rootUrl: "/api/monitoring"
+    useGrafanaIniFile: true
+    grafanaIniConfigMap: grafana-ini-config
 
 ## Configuration values for the postgresql dependency.
 ## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
