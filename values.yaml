@@ -56,9 +56,9 @@ kube-prometheus:
             static_configs:
               - targets: ['robomotion-proxy:80']
 
-grafana:
-  config:
-    rootUrl: "/api/monitoring"
+# grafana:
+#   config:
+#     rootUrl: "/api/monitoring"
     #useGrafanaIniFile: true
     #grafanaIniConfigMap: grafana-ini-config
 
