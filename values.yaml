@@ -186,7 +186,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 2ed27b66
+  imageTag: 8d7ba9ed
   ingress:
     path: /admin
 
@@ -213,7 +213,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 2ed27b66
+  imageTag: 8d7ba9ed
   ingress:
     path: /designer
     annotations:
