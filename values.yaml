@@ -242,7 +242,7 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: e8d57f892
+  imageTag: aa5458f99
 
 # Robomotion User Console
 user:
