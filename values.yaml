@@ -54,7 +54,7 @@ kube-prometheus:
             # metrics_path defaults to '/metrics'
             # scheme defaults to 'http'.
             static_configs:
-              - targets: ['robomotion-proxy:80']
+              - targets: ['robomotion-proxy:80','robomotion-api:80']
 
 grafana:
   config:
@@ -194,7 +194,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 8d7ba9ed
+  imageTag: 787bdbf2
   replyMail:
   ingress:
     path: /api
