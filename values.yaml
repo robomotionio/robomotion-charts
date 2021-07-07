@@ -62,9 +62,12 @@ grafana:
     useGrafanaIniFile: true
     grafanaIniConfigMap: grafana-ini-config
   extraVolumes:
-    extraVolumeMounts:
-      - name: mail-volume
-        mountPath: /opt/bitnami/grafana/public/emails
+    - name: mail-volume
+      configMap:
+        name: emails
+  extraVolumeMounts:
+    - name: mail-volume
+      mountPath: /opt/bitnami/grafana/public/emails
 
 ## Configuration values for the postgresql dependency.
 ## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
