@@ -193,7 +193,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: ce1bfaf2
+  imageTag: 5a3e7005
   ingress:
     path: /admin
 
@@ -201,7 +201,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: bb289ed1 
+  imageTag: 5a3e7005 
   replyMail:
   ingress:
     path: /api
@@ -230,7 +230,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: ed377358
+  imageTag: ff00c69f
   ingress:
     path: /proxy
     annotations:
