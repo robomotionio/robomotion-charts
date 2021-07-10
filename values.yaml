@@ -201,7 +201,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 58765dfa 
+  imageTag: 45f90b17 
   replyMail:
   ingress:
     path: /api
@@ -230,7 +230,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 58765dfa
+  imageTag: 45f90b17
   ingress:
     path: /proxy
     annotations:
