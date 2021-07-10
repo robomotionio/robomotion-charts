@@ -56,6 +56,7 @@ kube-prometheus:
             static_configs:
               - targets: ['robomotion-proxy:80']
 
+##Configurations for grafana
 grafana:
   config:
     rootUrl: "/api/monitoring"
@@ -230,7 +231,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 45f90b17
+  imageTag: 45f90b17 
   ingress:
     path: /proxy
     annotations:
