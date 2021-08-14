@@ -166,7 +166,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 28b860969
+  imageTag: 00774f03
   ingress:
     path: /admin
 
@@ -174,7 +174,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 28b860969
+  imageTag: 00774f03
   replyMail:
   ingress:
     path: /api

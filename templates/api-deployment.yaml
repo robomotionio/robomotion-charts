@@ -23,6 +23,10 @@ spec:
         app: {{ template "robomotion-api.fullname" . }}
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: data-robomotion-postgresql-0
       containers:
       - name: {{ template "robomotion-api.fullname" . }}
         image: "{{ .Values.api.image }}:{{ .Values.api.imageTag }}"
@@ -31,6 +35,9 @@ spec:
           name: http
         - containerPort: 9000
           name: grpc
+        volumeMounts:
+        - mountPath: /data
+          name: data
         env:
           - name: PROXY_SRV
             value: {{ template "robomotion-proxy.fullname" . }}-grpc
