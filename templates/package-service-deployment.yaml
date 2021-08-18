@@ -1,0 +1,37 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-package.fullname" . }}
+  labels:
+    app: {{ template "robomotion-package.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-package.fullname" . }}
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-package.fullname" . }}
+    spec:
+      containers:
+      - name: {{ template "robomotion-package.fullname" . }}
+        image: "{{ .Values.packageService.image }}:{{ .Values.packageService.imageTag }}"
+        env:
+          - name: POLL_TIME
+            value: "{{ .Values.packageService.pollTime }}"
+          - name: CONFIG_PATH
+            value: /etc/config
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - name: pkg-volume
+          mountPath: /root/packages
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ template "robomotion-package.fullname" . }}-config
+      - name: pkg-volume
+        persistentVolumeClaim:
+          claimName: {{ template "robomotion-package.fullname" . }}-pvc
+

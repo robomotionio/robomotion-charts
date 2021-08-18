@@ -228,6 +228,14 @@ migrations:
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 1523f1399
 
+# Robomotion Package Service
+packageService:
+  name: package
+  image: gcr.io/robomotion/robomotion-package-service
+  imageTag: cd65e018
+  pollTime: 60
+  storage: 1Gi
+
 ## External database configuration
 ##
 externalDatabase:

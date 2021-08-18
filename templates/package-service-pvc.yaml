@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "robomotion-package.fullname" . }}-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ .Values.packageService.storage }} 
+  storageClassName: microk8s-hostpath
+  volumeName: {{ template "robomotion-package.fullname" . }}-volume
