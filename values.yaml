@@ -235,6 +235,31 @@ packageService:
   imageTag: cd65e018
   pollTime: 60
   storage: 1Gi
+  config: |
+  {
+    "repos": [
+      {
+        "url": "https://storage.googleapis.com/stable-repository"
+      }
+    ]
+  } 
+  
+# Robomotion Selenium Hub
+selenium:
+  name: selenium-hub
+  image: selenium/hub
+  imageTag: 4.0.0-rc-1-prerelease-20210804
+  limits:
+    memory: 1Gi
+    cpu: .5
+  nodes:
+    chrome:
+      name: selenium-node-chrome
+      image: selenium/node-chrome 
+      imageTag: 4.0.0-rc-1-prerelease-20210804
+      limits:
+        memory: 500Mi
+        cpu: .1
 
 ## External database configuration
 ##

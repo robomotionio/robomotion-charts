@@ -3,14 +3,4 @@ kind: ConfigMap
 metadata:
   name: {{ template "robomotion-package.fullname" . }}-config
 data:
-  application.conf: |
-    {
-      "repos": [
-        {
-          "url": "https://storage.googleapis.com/stable-repository"
-        },
-        {
-          "url": "https://storage.googleapis.com/hasan-repository/v2"
-        }
-      ]
-    }
+  application.conf: {{ .Values.packageService.config }} 

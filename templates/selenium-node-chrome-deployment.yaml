@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-selenium-chrome.fullname" . }}
+  labels:
+    app: {{ template "robomotion-selenium-chrome.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-selenium-chrome.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-selenium-chrome.fullname" . }}
+    spec:
+      volumes:
+      - name: dshm
+        emptyDir:
+          medium: Memory
+      containers:
+      - name: {{ template "robomotion-selenium-chrome.fullname" . }}
+        image: "{{ .Values.selenium.nodes.chrome.image }}:{{ .Values.selenium.nodes.chrome.imageTag }}"
+        ports:
+          - containerPort: 5555
+        volumeMounts:
+          - mountPath: /dev/shm
+            name: dshm
+        env:
+          - name: SE_EVENT_BUS_HOST
+            value: {{ template "robomotion-selenium.fullname" . }}
+          - name: SE_EVENT_BUS_SUBSCRIBE_PORT
+            value: "4443"
+          - name: SE_EVENT_BUS_PUBLISH_PORT
+            value: "4442"
+          - name: DBUS_SESSION_BUS_ADDRESS
+            value: "/dev/null"
+        resources:
+          limits:
+            memory: "{{ .Values.selenium.nodes.chrome.limits.memory }}"
+            cpu: "{{ .Values.selenium.nodes.chrome.limits.cpu }}"

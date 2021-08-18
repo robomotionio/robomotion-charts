@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-selenium.fullname" . }}
+  labels:
+    app: {{ template "robomotion-selenium.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-selenium.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-selenium.fullname" . }}
+    spec:
+      containers:
+      - name: {{ template "robomotion-selenium.fullname" . }}
+        image: "{{ .Values.selenium.image }}:{{ .Values.selenium.imageTag }}"
+        ports:
+          - containerPort: 4444
+        resources:
+          limits:
+            memory: "{{ .Values.selenium.limits.memory }}"
+            cpu: "{{ .Values.selenium.limits.cpu }}"
+        livenessProbe:
+          httpGet:
+            path: /wd/hub/status
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /wd/hub/status
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
