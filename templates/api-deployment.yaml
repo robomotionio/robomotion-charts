@@ -148,6 +148,11 @@ spec:
                 name: {{ printf "%s-%s" .Release.Name "external-db"  }}
                 key: password
                 {{- end }}
+          - name: ROBOMOTION_RSA_PRIV
+            valueFrom:
+            secretKeyRef:
+              key: privatekey
+              name: robomotion-rsa
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}

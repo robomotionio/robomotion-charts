@@ -45,6 +45,11 @@ spec:
                 key: secret
           - name: WS_URL
             value: {{ $wsURL }}
+          - name: ROBOMOTION_RSA_PUB
+            valueFrom:
+            secretKeyRef:
+              key: publickey
+              name: robomotion-rsa
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
