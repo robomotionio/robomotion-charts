@@ -235,14 +235,9 @@ packageService:
   imageTag: cd65e018
   pollTime: 60
   storage: 1Gi
-  config: |
-  {
-    "repos": [
-      {
-        "url": "https://storage.googleapis.com/stable-repository"
-      }
-    ]
-  } 
+  config: 
+    repos: 
+    - url: "https://storage.googleapis.com/stable-repository"
   
 # Robomotion Selenium Hub
 selenium:
