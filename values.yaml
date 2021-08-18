@@ -237,9 +237,9 @@ packageService:
   storage: 1Gi
   config: |
     "{
-      'repos': [
+      \"repos\": [
         {
-          'url': 'https://storage.googleapis.com/stable-repository'
+          \"url\": \"https://storage.googleapis.com/stable-repository\"
         }
       ]
     }"
