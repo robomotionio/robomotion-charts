@@ -226,7 +226,7 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 7a3001d4
+  imageTag: be4ecd85
 
 # Robomotion Package Service
 packageService:
