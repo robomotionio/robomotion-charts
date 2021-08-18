@@ -232,7 +232,7 @@ migrations:
 packageService:
   name: package
   image: gcr.io/robomotion/robomotion-package-service
-  imageTag: cd65e018
+  imageTag: 7a3001d4
   pollTime: 60
   storage: 1Gi
   config: |
