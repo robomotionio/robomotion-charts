@@ -236,14 +236,13 @@ packageService:
   pollTime: 60
   storage: 1Gi
   config: |
-    {
-      "repos": [ 
-        { 
-          "url": "https://storage.googleapis.com/stable-repository"
+    "{
+      'repos': [
+        {
+          'url': 'https://storage.googleapis.com/stable-repository'
         }
       ]
-    }
-  
+    }"
 # Robomotion Selenium Hub
 selenium:
   name: selenium-hub
