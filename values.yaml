@@ -234,12 +234,12 @@ packageService:
   image: gcr.io/robomotion/robomotion-package-service
   imageTag: 7a3001d4
   pollTime: 60
-  storage: 1Gi
+  storage: 10Gi
   config: |
     "{
       \"repos\": [
         {
-          \"url\": \"https://storage.googleapis.com/stable-repository\"
+          \"url\": \"https://packages.robomotion.io/testing\"
         }
       ]
     }"
