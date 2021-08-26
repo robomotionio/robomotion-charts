@@ -21,4 +21,3 @@ dependencies:
   version: 3.16.1
   repository: https://kubernetes.github.io/ingress-nginx
   condition: nginx-ingress.enabled
-
