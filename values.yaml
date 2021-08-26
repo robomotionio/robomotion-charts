@@ -178,7 +178,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   ingress:
     path: /admin
 
@@ -186,7 +186,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   replyMail:
   ingress:
     path: /api
@@ -197,7 +197,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   ingress:
     path: /
 
@@ -205,7 +205,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   ingress:
     path: /designer
     annotations:
@@ -215,7 +215,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   ingress:
     path: /proxy
     annotations:
@@ -225,7 +225,7 @@ proxy:
 app:
   name: app
   image: gcr.io/robomotion/robomotion-app
-  imageTag: b8f395d9
+  imageTag: fc7f3b32
   ingress:
     path: /mq/(.*)
     annotations:
@@ -236,19 +236,19 @@ app:
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
 
 # Robomotion migrations
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: be4ecd85
+  imageTag: fc7f3b32
 
 # Robomotion Package Service
 packageService:
   name: package
   image: gcr.io/robomotion/robomotion-package-service
-  imageTag: 7a3001d4
+  imageTag: fc7f3b32
   pollTime: 60
   storage: 10Gi
   config: |
