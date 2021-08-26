@@ -153,8 +153,13 @@ spec:
               secretKeyRef:
                 key: privatekey
                 name: robomotion-rsa
-         - name: ROBOMOTION_PKG_PVC
-           value: {{ template "robomotion-package.fullname" . }}-pvc
+          - name: ROBOMOTION_RSA_PUB
+            valueFrom:
+              secretKeyRef:
+                key: publickey
+                name: robomotion-rsa
+          - name: ROBOMOTION_PKG_PVC
+            value: {{ template "robomotion-package.fullname" . }}-pvc
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
