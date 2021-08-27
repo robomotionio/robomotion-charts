@@ -130,6 +130,7 @@ minio:
   enabled: true
   serviceType: ClusterIP
   ingress:
+    hostname:
     path: /objects
   ## minio uses this
   defaultBuckets: "robomotion"
