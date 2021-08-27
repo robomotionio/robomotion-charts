@@ -186,7 +186,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: fc7f3b32
+  imageTag: 0dafbee8
   replyMail:
   ingress:
     path: /api
@@ -280,7 +280,7 @@ selenium:
 user:
   name: user-console
   image: gcr.io/robomotion/robomotion-user
-  imageTag: 9be7ac1c
+  imageTag: da3fb51f
   ingress:
     path: /user
 
