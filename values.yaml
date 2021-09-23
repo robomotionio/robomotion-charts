@@ -121,6 +121,9 @@ redis:
   cluster:
     enabled: false
 
+nginx:
+  name: nginx
+
 minio:
   ## Use the minio chart dependency.
   ##
@@ -133,6 +136,8 @@ minio:
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
+  defaultAppBucket:
+    name: apps
   resources:
     requests:
       memory: 512Mi
@@ -177,6 +182,14 @@ admin:
   ingress:
     path: /admin
 
+# Robomotion User Console
+user:
+  name: user
+  image: gcr.io/robomotion/robomotion-user
+  imageTag: d44c6d745
+  ingress:
+    path: /user
+
 # Robomotion API service
 api:
   name: api
@@ -216,6 +229,17 @@ proxy:
     annotations:
       nginx.org/websocket-services: "ws-svc"    
 
+# Robomotion App Service
+app:
+  name: app
+  image: gcr.io/robomotion/robomotion-app
+  imageTag: d44c6d745
+  ingress:
+    path: /mq/(.*)
+    annotations:
+      nginx.org/websocket-services: "ws-svc"
+      nginx.ingress.kubernetes.io/rewrite-target: /$1
+
 # Robomotion Scheduler
 scheduler:
   name: scheduler
@@ -252,8 +276,11 @@ externalObjectStore:
   ## Object store location
   location:
 
-  ## Object store buckect name
+  ## Object store bucket name
   bucket: robomotion
+
+  ## App object store bucket name
+  bucket: apps
 
   ## Object store access key
   accessKey:
@@ -271,4 +298,4 @@ externalRedis:
   port:
 
   ## Redis password
-  password: 
+  password:

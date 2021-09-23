@@ -1,0 +1,44 @@
+{{- $host := ( index .Values.ingress.hosts 0 ) -}}
+{{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
+{{- $apiURL := printf "%s://%s%s" $scheme ( .Values.api.ingress.hostname | default $host.name ) .Values.api.ingress.path -}}
+{{- $authURL := printf "%s://%s%s" $scheme ( .Values.auth.ingress.hostname | default $host.name ) .Values.auth.ingress.path -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-user.fullname" . }}
+  labels:
+    app: {{ template "robomotion-user.fullname" . }}
+    chart: {{ template "robomotion.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    component: {{ .Values.user.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-user.fullname" . }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-user.fullname" . }}
+    spec:
+      containers:
+      - name: {{ template "robomotion-user.fullname" . }}
+        image: "{{ .Values.user.image }}:{{ .Values.user.imageTag }}"
+        ports:
+        - containerPort: 80
+          name: http
+        env:
+          - name: API_URL
+            value: {{ $apiURL }}
+          - name: AUTH_URL
+            value: {{ $authURL }}
+          - name: SESSION_STORE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: {{ printf "%s-%s" .Release.Name "session-store"  }}
+                key: secret
+      {{- if .Values.registry.secret }}
+      imagePullSecrets:
+      - name: {{ .Values.registry.secret }}
+      {{- end }}
