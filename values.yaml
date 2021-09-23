@@ -182,14 +182,6 @@ admin:
   ingress:
     path: /admin
 
-# Robomotion User Console
-user:
-  name: user
-  image: gcr.io/robomotion/robomotion-user
-  imageTag: d44c6d745
-  ingress:
-    path: /user
-
 # Robomotion API service
 api:
   name: api
@@ -251,6 +243,19 @@ migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: d44c6d745
+
+# Robomotion User Console
+user:
+  name: user-console
+  image: gcr.io/robomotion/robomotion-user
+  imageTag: d44c6d745
+  ingress:
+    path: /user
+
+userApps:
+  name: user-apps
+  ingress:
+    path: /apps
 
 ## External database configuration
 ##
