@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion.nginx.fullname" . }}
+  labels:
+    app: {{ template "robomotion.nginx.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ template "robomotion.nginx.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion.nginx.fullname" . }}
+    spec:
+      volumes:
+      - name: {{ template "robomotion.minio.fullname" . }}
+        persistentVolumeClaim:
+          claimName: {{ template "robomotion.minio.fullname" . }}
+      - name: nginx-config
+        configMap:
+          name: nginx-config
+      containers:
+      - image: nginx
+        name: {{ template "robomotion.nginx.fullname" . }}
+        volumeMounts:
+        - name: {{ template "robomotion.minio.fullname" . }}
+          mountPath: /usr/share/nginx/html
+        - name:  nginx-config
+          mountPath: /etc/nginx/conf.d

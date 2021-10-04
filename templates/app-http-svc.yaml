@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "robomotion-app.fullname" . }}
+  labels:
+    app: {{ template "robomotion-app.fullname" . }}
+    chart: {{ template "robomotion.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    component: {{ .Values.app.name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - name: http
+    port: {{ .Values.service.port }}
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: {{ template "robomotion-app.fullname" . }}

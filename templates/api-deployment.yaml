@@ -95,6 +95,12 @@ spec:
             value: {{ .Values.minio.defaultBucket.name | quote }}
           {{- else }}
             value: {{ .Values.externalObjectStore.bucket | quote }}
+          {{- end }}
+          - name: STORE_APPBUCKET
+          {{- if .Values.minio.enabled }}
+            value: {{ .Values.minio.defaultAppBucket.name | quote }}
+          {{- else }}
+            value: {{ .Values.externalObjectStore.appBucket | quote }}
           {{- end }}          
           - name: STORE_ACCESSKEY
             valueFrom:

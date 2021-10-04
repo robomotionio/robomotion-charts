@@ -1,36 +1,30 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: {{ template "robomotion-proxy.fullname" . }}
+  name: {{ template "robomotion-app.fullname" . }}
   labels:
-    app: {{ template "robomotion-proxy.fullname" . }}
+    app: {{ template "robomotion-app.fullname" . }}
     chart: {{ template "robomotion.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-    component: {{ .Values.proxy.name }}
+    component: {{ .Values.app.name }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "robomotion-proxy.fullname" . }}
+      app: {{ template "robomotion-app.fullname" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ template "robomotion-proxy.fullname" . }}
+        app: {{ template "robomotion-app.fullname" . }}
     spec:
       containers:
-      - name: {{ template "robomotion-proxy.fullname" . }}
-        image: "{{ .Values.proxy.image }}:{{ .Values.proxy.imageTag }}"
+      - name: {{ template "robomotion-app.fullname" . }}
+        image: "{{ .Values.app.image }}:{{ .Values.app.imageTag }}"
         ports:
         - containerPort: 80
           name: http
-        - containerPort: 9000
-          name: grpc
         env:
-          - name: API_SRV
-            value: {{ template "robomotion-api.fullname" . }}-grpc        
-          - name: PROXY_PATH
-            value: {{ .Values.proxy.ingress.path }}
           - name: REDIS_SCHEME
             value: {{ default "redis" .Values.redis.scheme }}
           - name: REDIS_HOST

@@ -121,6 +121,9 @@ redis:
   cluster:
     enabled: false
 
+nginx:
+  name: nginx
+
 minio:
   ## Use the minio chart dependency.
   ##
@@ -133,6 +136,8 @@ minio:
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
+  defaultAppBucket:
+    name: apps
   resources:
     requests:
       memory: 512Mi
@@ -173,7 +178,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 1523f1399
+  imageTag: 7424283da
   ingress:
     path: /admin
 
@@ -181,7 +186,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: 1523f1399
+  imageTag: 7424283da
   replyMail:
   ingress:
     path: /api
@@ -192,7 +197,7 @@ api:
 auth:
   name: authorization
   image: gcr.io/robomotion/robomotion-authorization
-  imageTag: 1e6af83da
+  imageTag: 7424283da
   ingress:
     path: /
 
@@ -200,7 +205,7 @@ auth:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 1523f1399
+  imageTag: 7424283da
   ingress:
     path: /designer
     annotations:
@@ -210,23 +215,47 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: 1523f1399
+  imageTag: 7424283da
   ingress:
     path: /proxy
     annotations:
       nginx.org/websocket-services: "ws-svc"    
 
+# Robomotion App Service
+app:
+  name: app
+  image: gcr.io/robomotion/robomotion-app
+  imageTag: 7424283da
+  ingress:
+    path: /mq/(.*)
+    annotations:
+      nginx.org/websocket-services: "ws-svc"
+      nginx.ingress.kubernetes.io/rewrite-target: /$1
+
 # Robomotion Scheduler
 scheduler:
   name: scheduler
   image: gcr.io/robomotion/robomotion-scheduler
-  imageTag: 1523f1399
+  imageTag: 7424283da
 
 # Robomotion migrations
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 1523f1399
+  imageTag: 7424283da
+
+# Robomotion User Console
+user:
+  name: user-console
+  image: gcr.io/robomotion/robomotion-user
+  imageTag: 7424283da
+  ingress:
+    path: /user
+
+userApps:
+  name: user-apps
+  ingress:
+    path: /apps
 
 ## External database configuration
 ##
@@ -252,8 +281,11 @@ externalObjectStore:
   ## Object store location
   location:
 
-  ## Object store buckect name
+  ## Object store bucket name
   bucket: robomotion
+
+  ## App object store bucket name
+  bucket: apps
 
   ## Object store access key
   accessKey:
@@ -271,4 +303,4 @@ externalRedis:
   port:
 
   ## Redis password
-  password: 
+  password:
