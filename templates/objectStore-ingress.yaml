@@ -1,6 +1,6 @@
 {{- if .Values.minio.enabled }}
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "robomotion.minio.fullname"  . }}
@@ -24,7 +24,11 @@ spec:
     http:
       paths:
       - path: {{ .Values.minio.ingress.path }}/?(.*)
+        pathType: Prefix
         backend:
-          serviceName: {{ template "robomotion.minio.fullname" . }}
-          servicePort: 9000
+          service:
+            name: {{ template "robomotion.minio.fullname" . }}
+            port:
+              number: 9000
+
 {{- end }}

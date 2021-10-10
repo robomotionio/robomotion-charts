@@ -1,5 +1,5 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "robomotion-proxy.fullname" . }}
@@ -21,6 +21,10 @@ spec:
     http:
       paths:
       - path: {{ .Values.proxy.ingress.path }}
+        pathType: Prefix
         backend:
-          serviceName: {{ template "robomotion-proxy.fullname" . }}
-          servicePort: 80
+          service:
+            name: {{ template "robomotion-proxy.fullname" . }}
+            port:
+              number: 80
+
