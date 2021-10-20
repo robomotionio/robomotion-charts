@@ -37,7 +37,12 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ printf "%s-%s" .Release.Name "session-store"  }}
-                key: secret    
+                key: secret
+          - name: ROBOMOTION_RSA_PUB
+            valueFrom:
+              secretKeyRef:
+                key: publickey
+                name: robomotion-rsa
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
