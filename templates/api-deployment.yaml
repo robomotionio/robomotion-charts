@@ -1,6 +1,6 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
 {{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
-{{- $minioURL := printf "%s://%s%s" $scheme ( .Values.minio.ingress.hostname | default $host.name ) .Values.minio.ingress.path -}}
+{{- $minioURL := printf "%s://%s%s" $scheme $host.name .Values.minio.ingress.path -}}
 {{- $replyMail := .Values.api.replyMail | default (printf "noreply@%s" $host.name ) -}}
 apiVersion: apps/v1
 kind: Deployment

@@ -6,15 +6,15 @@ dependencies:
   repository: https://charts.jetstack.io
   condition: certmanager.enabled
 - name: postgresql
-  version: 10.12.2
+  version: 10.13.8
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: redis
-  version: 15.4.1
+  version: 15.5.5
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
 - name: minio
-  version: 8.1.9
+  version: 9.2.0
   repository: https://charts.bitnami.com/bitnami
   condition: minio.enabled
 - name: ingress-nginx
