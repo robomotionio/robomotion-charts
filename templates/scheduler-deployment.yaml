@@ -78,7 +78,7 @@ spec:
               secretKeyRef:
                 {{- if .Values.minio.enabled }}
                 name: {{ template "robomotion.minio.fullname" . }}
-                key: rootUser
+                key: root-user
                 {{- else }}
                 name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
                 key: access-key
@@ -88,7 +88,7 @@ spec:
               secretKeyRef:
                 {{- if .Values.minio.enabled }}
                 name: {{ template "robomotion.minio.fullname" . }}
-                key: rootPassword
+                key: root-password
                 {{- else }}
                 name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
                 key: secret-key
