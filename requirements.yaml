@@ -14,7 +14,7 @@ dependencies:
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
 - name: minio
-  version: 9.2.0
+  version: 8.1.11
   repository: https://charts.bitnami.com/bitnami
   condition: minio.enabled
 - name: ingress-nginx
