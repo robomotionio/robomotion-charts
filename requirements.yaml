@@ -2,22 +2,22 @@
 dependencies:
 - name: cert-manager
   alias: certmanager
-  version: 0.9.1
+  version: 1.6.1
   repository: https://charts.jetstack.io
   condition: certmanager.enabled
 - name: postgresql
-  version: 10.12.2
+  version: 10.13.14
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
 - name: redis
-  version: 15.4.1
+  version: 15.6.4
   repository: https://charts.bitnami.com/bitnami
   condition: redis.enabled
 - name: minio
-  version: 8.1.9
+  version: 9.2.5
   repository: https://charts.bitnami.com/bitnami
   condition: minio.enabled
 - name: ingress-nginx
-  version: 4.0.5
+  version: 4.0.13
   repository: https://kubernetes.github.io/ingress-nginx
   condition: nginx-ingress.enabled
