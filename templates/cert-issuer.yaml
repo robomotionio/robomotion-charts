@@ -11,7 +11,10 @@ spec:
     email: {{ required "You must provide an email to associate with your TLS certificates. Please set certmanager.email" (default .Values.certmanager.email .Values.robomotionEmail) | quote }}
 {{ if eq .Values.certmanager.solver "http01" }}
     # Enable the HTTP-01 challenge provider
-    http01: {}
+    solvers:
+    - http01:
+       ingress:
+         class: nginx
 {{ else }}
     solvers:
     - dns01:
