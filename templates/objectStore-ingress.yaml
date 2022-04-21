@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
     nginx.ingress.kubernetes.io/upstream-vhost: {{ template "robomotion.minio.host" . }}
 {{- if .Values.certmanager.enabled }}
-    certmanager.k8s.io/issuer: "{{ .Release.Name }}-issuer"
+    cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
 {{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:

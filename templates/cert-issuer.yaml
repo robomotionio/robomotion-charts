@@ -1,5 +1,5 @@
 {{- if  .Values.certmanager.enabled }}
-apiVersion: certmanager.k8s.io/v1alpha1
+apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: {{ .Release.Name }}-issuer
@@ -11,7 +11,10 @@ spec:
     email: {{ required "You must provide an email to associate with your TLS certificates. Please set certmanager.email" (default .Values.certmanager.email .Values.robomotionEmail) | quote }}
 {{ if eq .Values.certmanager.solver "http01" }}
     # Enable the HTTP-01 challenge provider
-    http01: {}
+    solvers:
+    - http01:
+       ingress:
+         class: public
 {{ else }}
     solvers:
     - dns01:
