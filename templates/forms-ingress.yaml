@@ -1,0 +1,40 @@
+{{- $host := ( index .Values.ingress.hosts 0 ) -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "robomotion-forms.fullname" . }}
+  annotations:
+{{- if .Values.certmanager.enabled }}
+    cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
+{{- end }}
+    nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
+{{ toYaml .Values.ingress.annotations | indent 4 }}
+spec:
+  {{ if $host.tls }}
+  tls:
+  {{ if $host.multiTenant }}
+  - hosts:
+    - "*.{{ $host.name }}"
+    secretName: {{ $host.wildSecret }}
+  {{ else }}
+  - hosts:
+    - {{ $host.name }}
+    secretName: {{ $host.tlsSecret }}
+  {{ end }}
+  {{ end }}
+  rules:
+{{ if $host.multiTenant }}
+  - host: "*.{{ $host.name }}"
+{{ else }}
+  - host: {{ $host.name }}
+{{ end }}
+    http:
+      paths:
+      - path: {{ .Values.forms.ingress.path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ template "robomotion-forms.fullname" . }}
+            port:
+              number: 80
+

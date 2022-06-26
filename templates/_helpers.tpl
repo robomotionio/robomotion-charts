@@ -53,6 +53,13 @@ The robomotion-admin name
 {{- end -}}
 
 {{/*
+The robomotion-forms name
+*/}}
+{{- define "robomotion-forms.name" -}}
+{{- default .Chart.Name .Values.forms.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
 The robomotion-api name
 */}}
 {{- define "robomotion-api.name" -}}
@@ -132,6 +139,24 @@ If release name contains chart name it will be used as a full name.
 {{- .Values.migrations.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
 {{- $name := default .Chart.Name .Values.migrations.name -}}
+{{- if contains $name .Release.Name -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
+*/}}
+{{- define "robomotion-forms.fullname" -}}
+{{- if .Values.forms.fullnameOverride -}}
+{{- .Values.forms.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- $name := default .Chart.Name .Values.forms.name -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}

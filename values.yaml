@@ -201,6 +201,14 @@ auth:
   ingress:
     path: /
 
+# Robomotion Login
+forms:
+  name: forms
+  image: gcr.io/robomotion/robomotion-forms
+  imageTag: 08ff9f479
+  ingress:
+    path: /forms
+
 # Robomotion Flow Designer
 designer:
   name: designer
