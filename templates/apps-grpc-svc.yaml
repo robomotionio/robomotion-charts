@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ template "robomotion-apps.fullname" . }}
 spec:
-  type: {{ ClusterIP }}
+  type: ClusterIP
   ports:
   - port: 9000
     protocol: TCP
