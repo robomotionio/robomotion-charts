@@ -4,18 +4,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "robomotion-cloud-proxy.fullname" . }}
+  name: {{ template "robomotion-cloudproxy.fullname" . }}
   labels:
-    app: {{ template "robomotion-cloud-proxy.fullname" . }}
+    app: {{ template "robomotion-cloudproxy.fullname" . }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "robomotion-cloud-proxy.fullname" . }}
+      app: {{ template "robomotion-cloudproxy.fullname" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ template "robomotion-cloud-proxy.fullname" . }}
+        app: {{ template "robomotion-cloudproxy.fullname" . }}
     spec:     
       containers:
       - name: {{ template "robomotion-apps.fullname" . }}

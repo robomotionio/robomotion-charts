@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ template "robomotion-cloud-proxy.fullname" . }}
+  name: {{ template "robomotion-cloudproxy.fullname" . }}
   annotations:
     ingress.kubernetes.io/ssl-redirect: "true"
     kubernetes.io/tls-acme: "true"
@@ -32,49 +32,49 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80   
       - path: /app
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80                            
       - path: /core
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80                                          
       - path: /util
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80        
       - path: /vendor
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80                                                        
       - path: /websockify
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80   
       - path: /settings
         pathType: ImplementationSpecific
         backend:
           service: 
-            name: robomotion-cloud-proxy
+            name: robomotion-cloudproxy
             port: 
               number: 80                                                                                    
 

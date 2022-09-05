@@ -204,12 +204,12 @@ apps:
 
 # Robomotion Cloud Proxy
 apps:
-  name: cloud-proxy
-  image: gcr.io/robomotion/robomotion-cloud-proxy
+  name: cloudproxy
+  image: gcr.io/robomotion/robomotion-cloudproxy
   imageTag: latest
   replyMail:
   ingress:
-    path: /cloud-proxy
+    path: /cloudproxy
 
 # Robomotion Login
 auth:

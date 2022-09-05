@@ -74,10 +74,10 @@ The robomotion-apps name
 {{- end -}}
 
 {{/*
-The robomotion-cloud-proxy name
+The robomotion-cloudproxy name
 */}}
-{{- define "robomotion-cloud-proxy.name" -}}
-{{- default .Chart.Name .Values.cloud-proxy.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "robomotion-cloudproxy.name" -}}
+{{- default .Chart.Name .Values.cloudproxy.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -238,11 +238,11 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "robomotion-cloud-proxy.fullname" -}}
-{{- if .Values.cloud-proxy.fullnameOverride -}}
-{{- .Values.cloud-proxy.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "robomotion-cloudproxy.fullname" -}}
+{{- if .Values.cloudproxy.fullnameOverride -}}
+{{- .Values.cloudproxy.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := default .Chart.Name .Values.cloud-proxy.name -}}
+{{- $name := default .Chart.Name .Values.cloudproxy.name -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
