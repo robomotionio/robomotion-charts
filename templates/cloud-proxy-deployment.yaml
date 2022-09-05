@@ -18,8 +18,8 @@ spec:
         app: {{ template "robomotion-cloudproxy.fullname" . }}
     spec:     
       containers:
-      - name: {{ template "robomotion-apps.fullname" . }}
-        image: "{{ .Values.apps.image }}:latest"
+      - name: {{ template "robomotion-cloudproxy.fullname" . }}
+        image: "gcr.io/robomotion/robomotion-cloud-proxy:latest:latest"
         ports:
         - containerPort: 7900
           name: cloud-http

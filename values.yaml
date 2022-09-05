@@ -205,7 +205,7 @@ apps:
 # Robomotion Cloud Proxy
 apps:
   name: cloudproxy
-  image: gcr.io/robomotion/robomotion-cloudproxy
+  image: gcr.io/robomotion/robomotion-cloud-proxy
   imageTag: latest
   replyMail:
   ingress:
