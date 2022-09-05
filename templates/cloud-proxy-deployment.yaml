@@ -1,0 +1,54 @@
+{{- $host := ( index .Values.ingress.hosts 0 ) -}}
+{{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "robomotion-cloud-proxy.fullname" . }}
+  labels:
+    app: {{ template "robomotion-cloud-proxy.fullname" . }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "robomotion-cloud-proxy.fullname" . }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ template "robomotion-cloud-proxy.fullname" . }}
+    spec:     
+      containers:
+      - name: {{ template "robomotion-apps.fullname" . }}
+        image: "{{ .Values.apps.image }}:latest"
+        ports:
+        - containerPort: 7900
+          name: cloud-http
+        env:
+          - name: REDIS_SCHEME
+            value: {{ default "redis" .Values.redis.scheme }}
+          - name: REDIS_HOST
+          {{- if .Values.redis.enabled }}
+            value: {{ template "robomotion.redis.host" . }}
+          {{- else }}
+            value: {{ .Values.externalRedis.host | quote }}
+          {{- end }}
+          - name: REDIS_PORT
+          {{- if .Values.redis.enabled }}
+            value: {{ .Values.redis.redisPort | quote }}
+          {{- else }}
+            value: {{ .Values.externalRedis.port | quote }}
+          {{- end }}
+          - name: REDIS_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                {{- if .Values.redis.enabled }}
+                name: {{ template "robomotion.redis.fullname" . }}
+                key: redis-password
+                {{- else }}
+                name: {{ printf "%s-%s" .Release.Name "external-redis"  }}
+                key: password
+                {{- end }}
+      {{- if .Values.registry.secret }}
+      imagePullSecrets:
+      - name: {{ .Values.registry.secret }}
+      {{- end }}

@@ -1,0 +1,80 @@
+{{- $host := ( index .Values.ingress.hosts 0 ) -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ template "robomotion-cloud-proxy.fullname" . }}
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "true"
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Content-Security-Policy: frame-ancestors https://uluman.robomotion.online http://localhost:3000";
+spec:
+  tls:
+  - hosts:
+    - 'cloud.robomotion.online'
+  rules:
+  - host: 'cloud.robomotion.online'
+    http: 
+      paths:
+
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: selenium-hub
+            port: 
+              number: 4444   
+              
+      - path: /vnc
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80   
+      - path: /app
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80                            
+      - path: /core
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80                                          
+      - path: /util
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80        
+      - path: /vendor
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80                                                        
+      - path: /websockify
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80   
+      - path: /settings
+        pathType: ImplementationSpecific
+        backend:
+          service: 
+            name: robomotion-cloud-proxy
+            port: 
+              number: 80                                                                                    
+
