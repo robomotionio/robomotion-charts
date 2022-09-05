@@ -203,7 +203,7 @@ apps:
     path: /apps
 
 # Robomotion Cloud Proxy
-apps:
+cloudproxy:
   name: cloudproxy
   image: gcr.io/robomotion/robomotion-cloud-proxy
   imageTag: latest
