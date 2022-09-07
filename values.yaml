@@ -178,7 +178,7 @@ registry:
 admin:
   name: admin
   image: gcr.io/robomotion/robomotion-admin
-  imageTag: 08ff9f479
+  imageTag: b4656a5c2
   ingress:
     path: /admin
 
@@ -186,7 +186,7 @@ admin:
 api:
   name: api
   image: gcr.io/robomotion/robomotion-api-service
-  imageTag: e91663fd0
+  imageTag: b4656a5c2
   replyMail:
   ingress:
     path: /api
@@ -197,7 +197,7 @@ api:
 apps:
   name: apps
   image: gcr.io/robomotion/robomotion-apps-service
-  imageTag: e267c7bbc
+  imageTag: b4656a5c2
   replyMail:
   ingress:
     path: /apps
@@ -223,7 +223,7 @@ auth:
 forms:
   name: forms
   image: gcr.io/robomotion/robomotion-forms
-  imageTag: 08ff9f479
+  imageTag: b4656a5c2
   ingress:
     path: /forms
 
@@ -231,7 +231,7 @@ forms:
 designer:
   name: designer
   image: gcr.io/robomotion/robomotion-designer
-  imageTag: 7ea3364f9
+  imageTag: b4656a5c2
   ingress:
     path: /designer
     annotations:
@@ -241,7 +241,7 @@ designer:
 proxy:
   name: proxy
   image: gcr.io/robomotion/robomotion-proxy
-  imageTag: cfa49c957
+  imageTag: b4656a5c2
   ingress:
     path: /proxy
     annotations:
@@ -268,7 +268,7 @@ scheduler:
 migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
-  imageTag: 08ff9f479
+  imageTag: b4656a5c2
 
 # Robomotion User Console
 user:

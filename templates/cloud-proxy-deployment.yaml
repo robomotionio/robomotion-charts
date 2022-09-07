@@ -19,7 +19,7 @@ spec:
     spec:     
       containers:
       - name: {{ template "robomotion-cloudproxy.fullname" . }}
-        image: "gcr.io/robomotion/robomotion-cloud-proxy:latest:latest"
+        image: "gcr.io/robomotion/robomotion-cloud-proxy:latest"
         ports:
         - containerPort: 7900
           name: cloud-http
