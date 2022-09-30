@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ template "robomotion-user.fullname" . }}
+  name: {{ template "robomotion-bots.fullname" . }}
   annotations:
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
@@ -20,10 +20,10 @@ spec:
   - host: {{ .Values.api.ingress.hostname | default $host.name }}
     http:
       paths:
-      - path: {{ .Values.user.ingress.path }}
+      - path: {{ .Values.bots.ingress.path }}
         pathType: Prefix
         backend:
           service:
-            name: {{ template "robomotion-user.fullname" . }}
+            name: {{ template "robomotion-bots.fullname" . }}
             port:
               number: 80
