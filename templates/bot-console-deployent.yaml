@@ -1,30 +1,30 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
 {{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
 {{- $apiURL := printf "%s://%s%s" $scheme ( .Values.api.ingress.hostname | default $host.name ) .Values.api.ingress.path -}}
-{{- $authURL := printf "%s://%s%s" $scheme ( .Values.auth.ingress.hostname | default $host.name ) .Values.auth.ingress.path -}}
+{{- $authURL := printf "%s://%s" $scheme ( .Values.auth.ingress.hostname | default $host.name ) -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "robomotion-user.fullname" . }}
+  name: {{ template "robomotion-bots.fullname" . }}
   labels:
-    app: {{ template "robomotion-user.fullname" . }}
+    app: {{ template "robomotion-bots.fullname" . }}
     chart: {{ template "robomotion.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-    component: {{ .Values.user.name }}
+    component: {{ .Values.bots.name }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "robomotion-user.fullname" . }}
+      app: {{ template "robomotion-bots.fullname" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ template "robomotion-user.fullname" . }}
+        app: {{ template "robomotion-bots.fullname" . }}
     spec:
       containers:
-      - name: {{ template "robomotion-user.fullname" . }}
-        image: "{{ .Values.user.image }}:{{ .Values.user.imageTag }}"
+      - name: {{ template "robomotion-bots.fullname" . }}
+        image: "{{ .Values.bots.image }}:{{ .Values.bots.imageTag }}"
         ports:
         - containerPort: 80
           name: http

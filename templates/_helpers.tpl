@@ -95,10 +95,10 @@ The robomotion-app name
 {{- end -}}
 
 {{/*
-The robomotion-user name
+The robomotion-bots name
 */}}
-{{- define "robomotion-user.name" -}}
-{{- default .Chart.Name .Values.user.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "robomotion-bots.name" -}}
+{{- default .Chart.Name .Values.bots.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*
@@ -109,7 +109,7 @@ The robomotion-user-apps name
 {{- end -}}
 
 {{/*
-The robomotion-user name
+The robomotion-nginx name
 */}}
 {{- define "robomotion.nginx.name" -}}
 {{- default .Chart.Name .Values.nginx.name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
@@ -278,11 +278,11 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "robomotion-user.fullname" -}}
-{{- if .Values.user.fullnameOverride -}}
-{{- .Values.user.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "robomotion-bots.fullname" -}}
+{{- if .Values.bots.fullnameOverride -}}
+{{- .Values.bots.fullnameOverride | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
-{{- $name := default .Chart.Name .Values.user.name -}}
+{{- $name := default .Chart.Name .Values.bots.name -}}
 {{- if contains $name .Release.Name -}}
 {{- .Release.Name | trunc 63 | trimSuffix "-" -}}
 {{- else -}}
