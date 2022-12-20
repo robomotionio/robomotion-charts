@@ -55,18 +55,19 @@ postgresql:
   ##
   enabled: true
 
-  ### PostgreSQL User to create.
-  ##
-  postgresqlUsername: postgres
+  auth:
+    ### PostgreSQL User to create.
+    ##
+    username: postgres
 
-  ## PostgreSQL Password for the new user.
-  ## If not set, a random 10 characters password will be used.
-  ##
-  # postgresqlPassword: 
+    ## PostgreSQL Password for the new user.
+    ## If not set, a random 10 characters password will be used.
+    ##
+    # password: 
 
-  ## PostgreSQL Database to create.
-  ##
-  postgresqlDatabase: robomotion
+    ## PostgreSQL Database to create.
+    ##
+    database: robomotion
 
   ## PostgreSQL service port
   service:
