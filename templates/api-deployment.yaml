@@ -166,6 +166,7 @@ spec:
               secretKeyRef:
                 key: publickey
                 name: robomotion-rsa
+          {{- if .Values.super-admin.enabled }}
           - name: SUPER_ADMIN_TOKEN
             valueFrom:
               secretKeyRef:
@@ -173,6 +174,7 @@ spec:
                 name: robomotion-super-admin-secret
           - name: SUPER_ADMIN_IP
             value: {{ .Values.api.superAdminIP }}
+          {{- end }}
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
