@@ -166,7 +166,7 @@ spec:
               secretKeyRef:
                 key: publickey
                 name: robomotion-rsa
-          {{- if .Values.super-admin.enabled }}
+          {{- if .Values.superadmin.enabled }}
           - name: SUPER_ADMIN_TOKEN
             valueFrom:
               secretKeyRef:
