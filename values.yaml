@@ -171,6 +171,9 @@ smtp:
   user:
   password:
 
+super-admin:
+  enabled: false
+
 # Private image registry secret
 registry:
   secret:
