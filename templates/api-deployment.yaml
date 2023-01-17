@@ -166,6 +166,13 @@ spec:
               secretKeyRef:
                 key: publickey
                 name: robomotion-rsa
+          - name: SUPER_ADMIN_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: sa-token
+                name: robomotion-super-admin-secret
+          - name: SUPER_ADMIN_IP
+            value: {{ .Values.api.superAdminToken }}
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
