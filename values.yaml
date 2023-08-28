@@ -198,6 +198,12 @@ api:
     annotations:
       nginx.ingress.kubernetes.io/proxy-body-size: 16m
 
+# Robomotion Monitoring service
+monitoring:
+  name: monitoring
+  image: gcr.io/robomotion/robomotion-monitoring-service
+  imageTag: f4604818d
+
 # Robomotion Login
 auth:
   name: authorization
