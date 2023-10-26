@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "robomotion-monitoring.fullname" . }}-grpc
+  labels:
+    app: {{ template "robomotion-monitoring.fullname" . }}
+    chart: {{ template "robomotion.chart" . }}
+    heritage: {{ .Release.Service }}
+    release: {{ .Release.Name }}
+    component: {{ .Values.monitoring.name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+  - port: 9000
+    protocol: TCP
+    targetPort: 9000
+
+  selector:
+    app: {{ template "robomotion-monitoring.fullname" . }}

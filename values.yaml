@@ -270,6 +270,12 @@ userApps:
   ingress:
     path: /apps
 
+# Robomotion monitoring
+monitoring:
+  name: monitoring
+  image: gcr.io/robomotion/robomotion-monitoring-service
+  imageTag: 08ff9f479
+
 ## External database configuration
 ##
 externalDatabase:
