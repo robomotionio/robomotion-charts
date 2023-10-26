@@ -8,7 +8,7 @@ spec:
       - name: "ch"
     users:
       admin/k8s_secret_password_sha256_hex: {{ printf "%s/%s-%s/%s" "default" .Release.Name "clickhouse" "passwordHex"  }}
-      admin/networks/host_regexp: "(.*)\\.default\\.svc\\.cluster\\.local$"
+      admin/networks/host_regexp: "(.*)$"
       admin/networks/ip: "127.0.0.1/32"
       admin/profile: default
       admin/quota: default
