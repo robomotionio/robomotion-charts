@@ -36,6 +36,8 @@ spec:
             value: {{ template "robomotion-proxy.fullname" . }}-grpc
           - name: SCHED_SRV
             value: {{ template "robomotion-scheduler.fullname" . }}-grpc
+          - name: MONITORING_SRV
+            value: {{ template "robomotion-monitoring.fullname" . }}-grpc
 {{- if .Values.minio.enabled }}
           - name: MINIO_EXPOSED_URL
             value: {{ $minioURL }}
