@@ -36,6 +36,8 @@ spec:
             value: {{ template "robomotion-proxy.fullname" . }}-grpc
           - name: SCHED_SRV
             value: {{ template "robomotion-scheduler.fullname" . }}-grpc
+          - name: MONITORING_SRV
+            value: {{ template "robomotion-monitoring.fullname" . }}-grpc
 {{- if .Values.minio.enabled }}
           - name: MINIO_EXPOSED_URL
             value: {{ $minioURL }}
@@ -175,6 +177,19 @@ spec:
           - name: SUPER_ADMIN_IP
             value: {{ .Values.api.superAdminIP }}
           {{- end }}
+          - name: CLICKHOUSE_IP
+            value: {{ printf "%s-%s.%s" "clickhouse" .Release.Name "default.svc.cluster.local"  }}
+          - name: CLICKHOUSE_PORT
+            value: "9000"
+          - name: CLICKHOUSE_USERNAME
+            value: admin
+          - name: CLICKHOUSE_NAME
+            value: robomotion
+          - name: CLICKHOUSE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: password
+                name: {{ printf "%s-%s" .Release.Name "clickhouse"  }}
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}

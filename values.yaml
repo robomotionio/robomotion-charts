@@ -174,6 +174,10 @@ smtp:
 superadmin:
   enabled: false
 
+clickhouse:
+  service:
+    port: 9000
+
 # Private image registry secret
 registry:
   secret:
@@ -257,6 +261,12 @@ migrations:
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 08ff9f479
 
+# Robomotion clickhouse migrations
+clickhouseMigrations:
+  name: migrations-clickhouse
+  image: gcr.io/robomotion/robomotion-migrations-clickhouse
+  imageTag: 199b1fb69
+
 # Robomotion Bot Console
 bots:
   name: bot-console
@@ -269,6 +279,12 @@ userApps:
   name: user-apps
   ingress:
     path: /apps
+
+# Robomotion monitoring
+monitoring:
+  name: monitoring
+  image: gcr.io/robomotion/robomotion-monitoring-service
+  imageTag: 08ff9f479
 
 ## External database configuration
 ##

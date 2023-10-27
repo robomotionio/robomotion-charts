@@ -1,0 +1,17 @@
+apiVersion: "clickhouse.altinity.com/v1"
+kind: "ClickHouseInstallation"
+metadata:
+  name: {{ .Release.Name | quote }}
+spec:
+  configuration:
+    clusters:
+      - name: "ch"
+    users:
+      admin/k8s_secret_password_sha256_hex: {{ printf "%s/%s-%s/%s" "default" .Release.Name "clickhouse" "passwordHex"  }}
+      admin/networks/host_regexp: "(.*)$"
+      admin/networks/ip: "127.0.0.1/32"
+      admin/profile: default
+      admin/quota: default
+    settings:
+      compression/case/method: zstd
+      disable_internal_dns_cache: 1

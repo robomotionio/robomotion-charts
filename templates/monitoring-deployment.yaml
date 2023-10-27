@@ -1,57 +1,55 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "robomotion-scheduler.fullname" . }}
+  name: {{ template "robomotion-monitoring.fullname" . }}
   labels:
-    app: {{ template "robomotion-scheduler.fullname" . }}
+    app: {{ template "robomotion-monitoring.fullname" . }}
     chart: {{ template "robomotion.chart" . }}
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-    component: {{ .Values.scheduler.name }}
+    component: {{ .Values.monitoring.name }}
 spec:
   selector:
     matchLabels:
-      app: {{ template "robomotion-scheduler.fullname" . }}
+      app: {{ template "robomotion-monitoring.fullname" . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app: {{ template "robomotion-scheduler.fullname" . }}
+        app: {{ template "robomotion-monitoring.fullname" . }}
     spec:
       containers:
-      - name: {{ template "robomotion-scheduler.fullname" . }}
-        image: "{{ .Values.scheduler.image }}:{{ .Values.scheduler.imageTag }}"
+      - name: {{ template "robomotion-monitoring.fullname" . }}
+        image: "{{ .Values.monitoring.image }}:{{ .Values.monitoring.imageTag }}"
         ports:
-        - containerPort: 8080
+        - containerPort: 9000
           name: grpc
         env:
-          - name: PROXY_SRV
-            value: {{ template "robomotion-proxy.fullname" . }}-grpc
-          - name: POSTGRES_HOST
+          - name: DATABASE_IP
           {{- if .Values.postgresql.enabled }}
             value: {{ template "robomotion.postgresql.fullname" . }}
           {{- else }}
             value: {{ .Values.externalDatabase.host | quote }}
           {{- end }}
-          - name: POSTGRES_PORT
+          - name: DATABASE_PORT
           {{- if .Values.postgresql.enabled }}
             value: {{ .Values.postgresql.service.port | quote }}
           {{- else }}
             value: {{ .Values.externalDatabase.port | quote }}
           {{- end }}
-          - name: POSTGRES_DB
+          - name: DATABASE_NAME
           {{- if .Values.postgresql.enabled }}
             value: {{ .Values.postgresql.auth.database | quote }}
           {{- else }}
             value: {{ .Values.externalDatabase.database | quote }}
           {{- end }}
-          - name: POSTGRES_USER
+          - name: DATABASE_USERNAME
           {{- if .Values.postgresql.enabled }}
             value: {{ .Values.postgresql.auth.username | quote }}
           {{- else }}
             value: {{ .Values.externalDatabase.user | quote }}
           {{- end }}
-          - name: POSTGRES_PASSWORD
+          - name: DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
                 {{- if .Values.postgresql.enabled }}
@@ -61,41 +59,9 @@ spec:
                 name: {{ printf "%s-%s" .Release.Name "external-db"  }}
                 key: password
                 {{- end }}
-          - name: STORE_ENDPOINT
-          {{- if .Values.minio.enabled }}
-            value: {{ template "robomotion.minio.host" . }}
-          {{- else }}
-            value: {{ .Values.externalObjectStore.location | quote }}
-          {{- end }}
-          - name: STORE_BUCKET
-          {{- if .Values.minio.enabled }}
-            value: {{ .Values.minio.defaultBucket.name | quote }}
-          {{- else }}
-            value: {{ .Values.externalObjectStore.bucket | quote }}
-          {{- end }}          
-          - name: STORE_ACCESSKEY
-            valueFrom:
-              secretKeyRef:
-                {{- if .Values.minio.enabled }}
-                name: {{ template "robomotion.minio.fullname" . }}
-                key: root-user
-                {{- else }}
-                name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
-                key: access-key
-                {{- end }}
-          - name: STORE_SECRET
-            valueFrom:
-              secretKeyRef:
-                {{- if .Values.minio.enabled }}
-                name: {{ template "robomotion.minio.fullname" . }}
-                key: root-password
-                {{- else }}
-                name: {{ printf "%s-%s" .Release.Name "external-object-store"  }}
-                key: secret-key
-                {{- end }}
           - name: REDIS_SCHEME
             value: {{ default "redis" .Values.redis.scheme }}
-          - name: REDIS_HOST
+          - name: REDIS_IP
           {{- if .Values.redis.enabled }}
             value: {{ template "robomotion.redis.host" . }}
           {{- else }}
