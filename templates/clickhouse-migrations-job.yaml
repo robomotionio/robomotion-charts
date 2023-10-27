@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ printf "%s-%s" .Release.Name "migrations-clickhouse"  }}
+spec:
+  activeDeadlineSeconds: 1800
+  backoffLimit: 1
+  template:
+    metadata:
+      labels:
+        app: {{ printf "%s-%s" .Release.Name "migrations-clickhouse"  }}
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: {{ printf "%s-%s" .Release.Name "migrations-clickhouse"  }}
+          image: "{{ .Values.clickhouseMigrations.image }}:{{ .Values.clickhouseMigrations.imageTag }}"
+          imagePullPolicy: Always
+          env:
+            - name: CLICKHOUSE_IP
+              value: {{ template "robomotion.clickhouse.fullname" . }}
+            - name: CLICKHOUSE_PORT
+              value: {{ .Values.clickhouse.service.port | quote }}
+            - name: CLICKHOUSE_USERNAME
+              value: admin
+            - name: CLICKHOUSE_NAME
+              value: default
+            - name: CLICKHOUSE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: {{ printf "%s-%s" .Release.Name "clickhouse"  }}

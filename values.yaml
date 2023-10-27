@@ -257,6 +257,12 @@ migrations:
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 08ff9f479
 
+# Robomotion clickhouse migrations
+clickhouseMigrations:
+  name: migrations-clickhouse
+  image: gcr.io/robomotion/robomotion-migrations-clickhouse
+  imageTag: 199b1fb69
+
 # Robomotion Bot Console
 bots:
   name: bot-console
