@@ -110,6 +110,8 @@ redis:
   redisPort: 6379
 
   master:
+    configuration: |-
+      notify-keyspace-events "g$E"
     persistence:
       enabled: true
       storageClass:
