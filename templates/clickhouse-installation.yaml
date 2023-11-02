@@ -22,6 +22,8 @@ spec:
     settings:
       compression/case/method: zstd
       disable_internal_dns_cache: 1
+      async_insert: 1
+      wait_for_async_insert: 1
   templates:
     volumeClaimTemplates:
       - name: data-volume-template
