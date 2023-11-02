@@ -179,6 +179,11 @@ superadmin:
 clickhouse:
   service:
     port: 9000
+  persistence:
+    data:
+      size: 10Gi
+    log:
+      size: 1Gi
 
 # Private image registry secret
 registry:
