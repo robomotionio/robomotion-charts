@@ -136,6 +136,8 @@ minio:
     path: /objects
   ## minio uses this
   defaultBuckets: "robomotion,apps,applications"
+  command: 
+    - touch /tmp/latif.txt
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
