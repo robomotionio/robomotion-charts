@@ -135,7 +135,7 @@ minio:
   ingress:
     path: /objects
   ## minio uses this
-  defaultBuckets: "robomotion"
+  defaultBuckets: "robomotion,apps,applications"
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
