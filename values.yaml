@@ -141,6 +141,8 @@ minio:
     name: robomotion
   defaultAppBucket:
     name: apps
+  defaultApplicationBucket:
+    name: applications
   resources:
     requests:
       memory: 512Mi
