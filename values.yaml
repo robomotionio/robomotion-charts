@@ -289,7 +289,7 @@ clickhouseMigrations:
 bots:
   name: bot-console
   image: gcr.io/robomotion/robomotion-bot-console
-  imageTag: 8e846f9
+  imageTag: 4e25993
   ingress:
     path: /bots
 
