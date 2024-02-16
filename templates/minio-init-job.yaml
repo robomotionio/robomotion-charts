@@ -33,5 +33,5 @@ spec:
                 secretKeyRef:
                   name: robomotion-minio
                   key: root-password
-            - name: "{{ .Values.onpremInit.env[0].name"          
-              value: "{{ .Values.onpremInit.env[0].value"
+            - name: "{{ .Values.onpremInit.env[0].name }}"          
+              value: "{{ .Values.onpremInit.env[0].value }}"
