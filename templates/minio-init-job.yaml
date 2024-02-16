@@ -5,7 +5,6 @@ metadata:
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "5"
-    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     spec:
@@ -33,3 +32,7 @@ spec:
                 secretKeyRef:
                   name: robomotion-minio
                   key: root-password
+          {{- range .Values.onpremInit.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{- end }}
