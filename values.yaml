@@ -132,6 +132,9 @@ minio:
   ##
   enabled: true
   serviceType: ClusterIP
+  extraEnvVars:
+    - name: HOST_NAME
+      value: robomotion.local
   ingress:
     path: /objects
   ## minio uses this
