@@ -132,9 +132,6 @@ minio:
   ##
   enabled: true
   serviceType: ClusterIP
-  extraEnvVars:
-    - name: ROBOMOTION_HOST_NAME
-      value: robomotion.local
   ingress:
     path: /objects
   ## minio uses this
@@ -272,6 +269,15 @@ migrations:
   name: migrations
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 08ff9f479
+
+# Robomotion onprem init
+onpremInit:
+  name: onprem-init
+  image: gcr.io/robomotion/robomotion-onprem-init
+  imageTag: 07d378502
+  env:
+  - name: ROBOMOTION_HOST_NAME
+    value: robomotion.local
 
 # Robomotion clickhouse migrations
 clickhouseMigrations:
