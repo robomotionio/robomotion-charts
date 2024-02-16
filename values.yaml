@@ -133,7 +133,7 @@ minio:
   enabled: true
   serviceType: ClusterIP
   extraEnvVars:
-    - name: HOST_NAME
+    - name: ROBOMOTION_HOST_NAME
       value: robomotion.local
   ingress:
     path: /objects
