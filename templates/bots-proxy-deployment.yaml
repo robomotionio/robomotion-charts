@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: robomotion-bots-proxy
-        image: gcr.io/robomotion/robomotion-bots-proxy:735794eca
+        image: gcr.io/robomotion/robomotion-bots-proxy:bdc1cf89e
         ports:
         - containerPort: 80
           name: bots-http
