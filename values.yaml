@@ -274,7 +274,7 @@ migrations:
 onpremInit:
   name: onprem-init
   image: gcr.io/robomotion/robomotion-onprem-init
-  imageTag: 07d378502
+  imageTag: bdc1cf89e
   env:
   - name: ROBOMOTION_HOST_NAME
     value: robomotion.local
@@ -289,7 +289,7 @@ clickhouseMigrations:
 bots:
   name: bot-console
   image: gcr.io/robomotion/robomotion-bot-console
-  imageTag: bdc1cf89e
+  imageTag: 7295217
   ingress:
     path: /bots
 
