@@ -14,7 +14,7 @@ spec:
   - host: enerjisa.robomotion.com
     http:
       paths:
-      - path: /_bots
+      - path: /assistant
         pathType: Prefix
         backend:
           service:
