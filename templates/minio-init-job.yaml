@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: minio-set-bucket-policy
+  name: robomotion-onprem-init
   annotations:
     "helm.sh/hook": post-install,post-upgrade
     "helm.sh/hook-weight": "5"
@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: set-bucket-policy
-          image: gcr.io/robomotion/robomotion-onprem-init:a96917fff
+          image: "{{ .Values.onpremInit.image }}:{{ .Values.onpremInit.imageTag }}"
           imagePullPolicy: Always
           command: ["/bin/sh"]
           args:
