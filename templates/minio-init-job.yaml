@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: set-bucket-policy
-          image: gcr.io/robomotion/robomotion-onprem-init:bdc1cf89e
+          image: gcr.io/robomotion/robomotion-onprem-init:a96917fff
           command: ["/bin/sh"]
           args:
             - -c
