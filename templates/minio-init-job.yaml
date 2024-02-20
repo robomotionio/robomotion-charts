@@ -12,6 +12,7 @@ spec:
       containers:
         - name: set-bucket-policy
           image: gcr.io/robomotion/robomotion-onprem-init:a96917fff
+          imagePullPolicy: Always
           command: ["/bin/sh"]
           args:
             - -c
