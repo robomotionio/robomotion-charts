@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: set-bucket-policy
-          image: "{{ .Values.onpremInit.image }}:{{ .Values.onpremInit.imageTag }}"
+          image: gcr.io/robomotion/robomotion-onprem-init:c37bc8aae
           imagePullPolicy: Always
           command: ["/bin/sh"]
           args:
@@ -21,7 +21,14 @@ spec:
               mc anonymous set public robominio/applications &&   
               echo "API_URL=$ROBOMOTION_HOST_NAME/api" > /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&
               echo "WS_URL=$ROBOMOTION_HOST_NAME" >> /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&              
-              mc cp -r /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e robominio/applications
+              echo "[robominio]
+              type = s3
+              provider = MinIO
+              env_auth = false
+              access_key_id = ${MINIO_ACCESS_KEY}
+              secret_access_key = ${MINIO_SECRET_KEY}
+              endpoint = http://robomotion-minio.default.svc.cluster.local:9000" > /root/.config/rclone/rclone.conf &&              
+              rclone copy /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e robominio:applications --config /root/.config/rclone/rclone.conf
           env:
             - name: MINIO_ACCESS_KEY
               valueFrom:
