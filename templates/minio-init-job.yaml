@@ -17,6 +17,7 @@ spec:
           args:
             - -c
             - >
+              mkdir -p /root/.config/rclone &&
               mc alias set robominio http://robomotion-minio.default.svc.cluster.local:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY} &&
               mc anonymous set public robominio/applications &&   
               echo "API_URL=$ROBOMOTION_HOST_NAME/api" > /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&
