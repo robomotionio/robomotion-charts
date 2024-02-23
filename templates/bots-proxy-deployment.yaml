@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: robomotion-bots-proxy
+  labels:
+    app: robomotion-bots-proxy
+spec:
+  selector:
+    matchLabels:
+      app: robomotion-bots-proxy
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: robomotion-bots-proxy
+    spec:
+      containers:
+      - name: robomotion-bots-proxy
+        image: "{{ .Values.botsProxy.image }}:{{ .Values.botsProxy.imageTag }}"
+        ports:
+        - containerPort: 80
+          name: bots-http
