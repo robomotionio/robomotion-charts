@@ -21,6 +21,7 @@ spec:
               mc anonymous set public robominio/applications &&   
               echo "API_URL=https://$ROBOMOTION_HOST_NAME/api" > /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&
               echo "WS_URL=https://$ROBOMOTION_HOST_NAME" >> /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&              
+              sed -i 's|https://www.gstatic.com/flutter-canvaskit/f40e976bedff57e69e1b3d89a7c2a3c617a03dad/|/assistant/canvaskit/|g' /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/main.dart.js &&
               mc cp -r /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e robominio/applications
           env:
             - name: MINIO_ACCESS_KEY
