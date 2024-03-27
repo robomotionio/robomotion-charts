@@ -280,7 +280,7 @@ migrations:
 onpremInit:
   name: onprem-init
   image: gcr.io/robomotion/robomotion-onprem-init
-  imageTag: b26e59d1c
+  imageTag: 5f96cb908
   env:
   - name: ROBOMOTION_HOST_NAME
     value: robomotion.local
