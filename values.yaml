@@ -299,11 +299,6 @@ bots:
   ingress:
     path: /bots
 
-userApps:
-  name: user-apps
-  ingress:
-    path: /apps
-
 # Robomotion monitoring
 monitoring:
   name: monitoring
