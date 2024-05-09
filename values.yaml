@@ -135,12 +135,14 @@ minio:
   ingress:
     path: /objects
   ## minio uses this
-  defaultBuckets: "robomotion"
+  defaultBuckets: "robomotion,apps,applications"
   ## robomotion charts uses this
   defaultBucket:
     name: robomotion
   defaultAppBucket:
     name: apps
+  defaultApplicationBucket:
+    name: applications
   resources:
     requests:
       memory: 512Mi
@@ -245,6 +247,12 @@ proxy:
     annotations:
       nginx.org/websocket-services: "ws-svc"    
 
+# Robomotion Bots Proxy
+botsProxy:
+  name: bots-proxy
+  image: gcr.io/robomotion/robomotion-bots-proxy
+  imageTag: e0d21ecc6        
+
 # Robomotion App Service
 app:
   name: app
@@ -268,6 +276,15 @@ migrations:
   image: gcr.io/robomotion/robomotion-migrations
   imageTag: 08ff9f479
 
+# Robomotion onprem init
+onpremInit:
+  name: onprem-init
+  image: gcr.io/robomotion/robomotion-onprem-init
+  imageTag: e8d02f8d7
+  env:
+  - name: ROBOMOTION_HOST_NAME
+    value: robomotion.local
+
 # Robomotion clickhouse migrations
 clickhouseMigrations:
   name: migrations-clickhouse
@@ -278,12 +295,7 @@ clickhouseMigrations:
 bots:
   name: bot-console
   image: gcr.io/robomotion/robomotion-bot-console
-  imageTag: 8e846f9
-  ingress:
-    path: /bots
-
-userApps:
-  name: user-apps
+  imageTag: d9f9a07
   ingress:
     path: /apps
 

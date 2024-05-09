@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: robomotion-bots-proxy
+  labels:
+    app: robomotion-bots-proxy
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: robomotion-bots-proxy
