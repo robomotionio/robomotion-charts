@@ -211,7 +211,7 @@ api:
   ingress:
     path: /api
     annotations:
-      nginx.ingress.kubernetes.io/proxy-body-size: 16m
+      nginx.ingress.kubernetes.io/proxy-body-size: 64m
 
 # Robomotion Login
 auth:
