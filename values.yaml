@@ -141,6 +141,8 @@ minio:
     name: robomotion
   defaultAppBucket:
     name: apps
+  defaultImagesBucket:
+    name: images
   defaultApplicationBucket:
     name: applications
   resources:
@@ -153,7 +155,7 @@ minio:
       - ReadWriteOnce
     ## Persistent Volume Storage Size.
     ##
-    size: 3Gi
+    size: 10Gi
 
 # https://cert-manager.io/docs/configuration/acme/
 # solver should be http01 or dns01

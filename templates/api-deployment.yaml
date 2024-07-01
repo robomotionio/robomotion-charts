@@ -1,6 +1,6 @@
 {{- $host := ( index .Values.ingress.hosts 0 ) -}}
 {{- $scheme := ( $host.tls | ternary "https" "http" ) -}}
-{{- $minioURL := printf "%s://%s%s" $scheme ( .Values.minio.ingress.hostname | default $host.name ) .Values.minio.ingress.path -}}
+{{- $minioURL := printf "%s://%s%s" $scheme $host.name .Values.minio.ingress.path -}}
 {{- $replyMail := .Values.api.replyMail | default (printf "noreply@%s" $host.name ) -}}
 apiVersion: apps/v1
 kind: Deployment
@@ -86,11 +86,35 @@ spec:
                 name: {{ printf "%s-%s" .Release.Name "external-redis"  }}
                 key: password
                 {{- end }}
+          - name: STORE_APPFILES_ENDPOINT
+          {{- if .Values.minio.enabled }}
+            value: {{ template "robomotion.minio.host" . }}
+          {{- else }}
+            value: {{ .Values.externalObjectStore.location | quote }}
+          {{- end }}
+          - name: STORE_IMAGES_ENDPOINT
+          {{- if .Values.minio.enabled }}
+            value: {{ template "robomotion.minio.host" . }}
+          {{- else }}
+            value: {{ .Values.externalObjectStore.location | quote }}
+          {{- end }}
+          - name: STORE_APPENDPOINT
+          {{- if .Values.minio.enabled }}
+            value: {{ template "robomotion.minio.host" . }}
+          {{- else }}
+            value: {{ .Values.externalObjectStore.location | quote }}
+          {{- end }}
           - name: STORE_ENDPOINT
           {{- if .Values.minio.enabled }}
             value: {{ template "robomotion.minio.host" . }}
           {{- else }}
             value: {{ .Values.externalObjectStore.location | quote }}
+          {{- end }}
+          - name: STORE_IMAGES_BUCKET
+          {{- if .Values.minio.enabled }}
+            value: {{ .Values.minio.defaultImagesBucket.name | quote }}
+          {{- else }}
+            value: {{ .Values.externalObjectStore.bucket | quote }}
           {{- end }}
           - name: STORE_BUCKET
           {{- if .Values.minio.enabled }}

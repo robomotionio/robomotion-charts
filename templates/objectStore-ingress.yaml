@@ -7,6 +7,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
+    nginx.ingress.kubernetes.io/proxy-body-size: 128m
     nginx.ingress.kubernetes.io/upstream-vhost: {{ template "robomotion.minio.host" . }}
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
