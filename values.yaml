@@ -105,6 +105,7 @@ postgresql:
 redis:
   ## Use the redis chart dependency.
   ##
+  redisPort: 6379
   enabled: true
   architecture: standalone
   standalone:
