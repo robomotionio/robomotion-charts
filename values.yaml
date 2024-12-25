@@ -106,23 +106,29 @@ redis:
   ## Use the redis chart dependency.
   ##
   enabled: true
-
-  redisPort: 6379
-
+  architecture: standalone
+  standalone:
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 1Gi
+    service:
+      type: ClusterIP
+      ports:
   master:
     configuration: |-
       notify-keyspace-events "g$E"
-    persistence:
-      enabled: true
-      storageClass:
-      accessModes:
-        - ReadWriteOnce
-      size: 1Gi
 
-  ##
-  ## Disable cluster management by default.
-  cluster:
-    enabled: false
+clickhouse:
+  deploy: true
+  persistence:
+    enabled: true
+    size: 8Gi
+    accessModes:
+      - ReadWriteOnce
+  resourcePreset: small
+  shards: 1
+  replicaCount: 1
 
 nginx:
   name: nginx
@@ -179,15 +185,6 @@ smtp:
 
 superadmin:
   enabled: false
-
-clickhouse:
-  service:
-    port: 9000
-  persistence:
-    data:
-      size: 10Gi
-    log:
-      size: 1Gi
 
 # Private image registry secret
 registry:
