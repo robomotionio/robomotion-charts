@@ -27,5 +27,5 @@ spec:
             - name: CLICKHOUSE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: password
+                  key: admin-password
                   name: {{ printf "%s-%s" .Release.Name "clickhouse"  }}

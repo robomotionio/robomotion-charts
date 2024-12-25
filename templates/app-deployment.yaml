@@ -50,15 +50,12 @@ spec:
                 key: password
                 {{- end }}
           - name: RABBIT_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: rabbit-default-user
-                key: username
+            value: user
           - name: RABBIT_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: rabbit-default-user
-                key: password
+                name: robomotion-rabbitmq
+                key: rabbitmq-password
       {{- if .Values.registry.secret }}
       imagePullSecrets:
       - name: {{ .Values.registry.secret }}
