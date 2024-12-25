@@ -84,7 +84,7 @@ spec:
                 key: password
                 {{- end }}
           - name: CLICKHOUSE_IP
-            value: {{ printf "%s-%s.%s" "clickhouse" .Release.Name "default.svc.cluster.local"  }}
+            value: {{ printf "%s-%s.%s" .Release.Name "clickhouse" "default.svc.cluster.local" }}
           - name: CLICKHOUSE_PORT
             value: "9000"
           - name: CLICKHOUSE_USERNAME
