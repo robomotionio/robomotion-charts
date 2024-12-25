@@ -84,17 +84,17 @@ spec:
                 key: password
                 {{- end }}
           - name: CLICKHOUSE_IP
-            value: {{ printf "%s-%s.%s" "clickhouse" .Release.Name "default.svc.cluster.local"  }}
+            value: {{ printf "%s-%s.%s" .Release.Name "clickhouse" "default.svc.cluster.local" }}
           - name: CLICKHOUSE_PORT
             value: "9000"
           - name: CLICKHOUSE_USERNAME
-            value: admin
+            value: default
           - name: CLICKHOUSE_NAME
             value: robomotion
           - name: CLICKHOUSE_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: password
+                key: admin-password
                 name: {{ printf "%s-%s" .Release.Name "clickhouse"  }}
       {{- if .Values.registry.secret }}
       imagePullSecrets:

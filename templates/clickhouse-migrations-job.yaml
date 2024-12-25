@@ -21,11 +21,11 @@ spec:
             - name: CLICKHOUSE_PORT
               value: {{ .Values.clickhouse.service.port | quote }}
             - name: CLICKHOUSE_USERNAME
-              value: admin
+              value: default
             - name: CLICKHOUSE_NAME
               value: default
             - name: CLICKHOUSE_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: password
+                  key: admin-password
                   name: {{ printf "%s-%s" .Release.Name "clickhouse"  }}

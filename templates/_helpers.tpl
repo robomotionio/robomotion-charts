@@ -359,7 +359,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "robomotion.clickhouse.fullname" -}}
-{{- printf "%s-%s" "clickhouse" .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- printf "%s-%s" .Release.Name "clickhouse"| trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
 {{/*

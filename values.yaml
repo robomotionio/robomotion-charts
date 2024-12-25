@@ -105,23 +105,36 @@ postgresql:
 redis:
   ## Use the redis chart dependency.
   ##
-  enabled: true
-
   redisPort: 6379
-
+  enabled: true
+  architecture: standalone
+  standalone:
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 1Gi
+    service:
+      type: ClusterIP
+      ports:
   master:
     configuration: |-
       notify-keyspace-events "g$E"
-    persistence:
-      enabled: true
-      storageClass:
-      accessModes:
-        - ReadWriteOnce
-      size: 1Gi
 
-  ##
-  ## Disable cluster management by default.
-  cluster:
+clickhouse:
+  deploy: true
+  service:
+    port: 9000
+  persistence:
+    enabled: true
+    size: 8Gi
+    accessModes:
+      - ReadWriteOnce
+  resourcePreset: small
+  shards: 1
+  replicaCount: 1
+  zookeeper:
+    enabled: false
+  keeper:
     enabled: false
 
 nginx:
@@ -179,15 +192,6 @@ smtp:
 
 superadmin:
   enabled: false
-
-clickhouse:
-  service:
-    port: 9000
-  persistence:
-    data:
-      size: 10Gi
-    log:
-      size: 1Gi
 
 # Private image registry secret
 registry:
