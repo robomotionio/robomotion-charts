@@ -49,6 +49,8 @@ spec:
                 name: {{ printf "%s-%s" .Release.Name "external-redis"  }}
                 key: password
                 {{- end }}
+          - name: RABBIT_HOST
+            value: robomotion-rabbitmq
           - name: RABBIT_USERNAME
             value: user
           - name: RABBIT_PASSWORD
