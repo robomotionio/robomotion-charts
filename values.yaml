@@ -122,6 +122,8 @@ redis:
 
 clickhouse:
   deploy: true
+  service:
+    port: 9000
   persistence:
     enabled: true
     size: 8Gi
