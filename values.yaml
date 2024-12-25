@@ -129,6 +129,10 @@ clickhouse:
   resourcePreset: small
   shards: 1
   replicaCount: 1
+  zookeeper:
+    enabled: false
+  keeper:
+    enabled: false
 
 nginx:
   name: nginx
