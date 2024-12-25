@@ -21,7 +21,7 @@ spec:
             - name: CLICKHOUSE_PORT
               value: {{ .Values.clickhouse.service.port | quote }}
             - name: CLICKHOUSE_USERNAME
-              value: admin
+              value: default
             - name: CLICKHOUSE_NAME
               value: default
             - name: CLICKHOUSE_PASSWORD
