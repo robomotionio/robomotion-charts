@@ -19,7 +19,7 @@ dependencies:
   condition: minio.enabled
 - name: nginx-ingress-controller
   version: 11.6.0
-  repository: https://charts.bitnami.com/nginx-ingress-controller
+  repository: https://charts.bitnami.com/bitnami
   condition: nginx-ingress.enabled
 - name: clickhouse
   version: 7.1.3
