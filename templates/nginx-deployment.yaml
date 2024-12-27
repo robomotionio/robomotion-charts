@@ -22,7 +22,7 @@ spec:
         configMap:
           name: nginx-config
       containers:
-      - image: nginx
+      - image: "{{ .Values.nginx.image }}:{{ .Values.nginx.imageTag }}"
         name: {{ template "robomotion.nginx.fullname" . }}
         volumeMounts:
         - name: {{ template "robomotion.minio.fullname" . }}

@@ -139,6 +139,8 @@ clickhouse:
 
 nginx:
   name: nginx
+  image: nginx
+  imageTag: 1.27.3
 
 minio:
   ## Use the minio chart dependency.
