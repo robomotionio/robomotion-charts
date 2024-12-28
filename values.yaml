@@ -12,7 +12,9 @@ ingress:
   ## ref: https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/nginx-configuration/annotations.md
   ##
   annotations:
-    kubernetes.io/ingress.class: public
+
+  spec:
+    ingressClassName: nginx
 
   hosts:
     - name: robomotion.local
@@ -180,7 +182,7 @@ certmanager:
   solver: http01
 
 nginx-ingress:
-  enabled: true
+  enabled: false
   controller:
     publishService:
       enabled: true

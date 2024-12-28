@@ -4,9 +4,9 @@ kind: Ingress
 metadata:
   name: robomotion-bots-proxy
   annotations:
-    kubernetes.io/ingress.class: "public"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  ingressClassName: {{ .Values.ingress.spec.ingressClassName }}
   tls:
   - hosts:
     - {{ $host.name }}

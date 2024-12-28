@@ -8,8 +8,8 @@ metadata:
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
-{{ toYaml .Values.ingress.annotations | indent 4 }}
 spec:
+  ingressClassName: {{ .Values.ingress.spec.ingressClassName }}
   {{ if $host.tls }}
   tls:
   - hosts:
