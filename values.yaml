@@ -182,7 +182,7 @@ certmanager:
   solver: http01
 
 nginx-ingress:
-  enabled: false
+  enabled: true
   controller:
     publishService:
       enabled: true
