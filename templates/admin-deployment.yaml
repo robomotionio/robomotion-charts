@@ -25,6 +25,7 @@ spec:
       containers:
       - name: {{ template "robomotion-admin.fullname" . }}
         image: "{{ .Values.admin.image }}:{{ .Values.admin.imageTag }}"
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
           name: http

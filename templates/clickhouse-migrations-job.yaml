@@ -14,7 +14,7 @@ spec:
       containers:
         - name: {{ printf "%s-%s" .Release.Name "migrations-clickhouse"  }}
           image: "{{ .Values.clickhouseMigrations.image }}:{{ .Values.clickhouseMigrations.imageTag }}"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: CLICKHOUSE_IP
               value: {{ template "robomotion.clickhouse.fullname" . }}

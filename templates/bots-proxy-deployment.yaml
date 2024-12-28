@@ -17,6 +17,7 @@ spec:
       containers:
       - name: robomotion-bots-proxy
         image: "{{ .Values.botsProxy.image }}:{{ .Values.botsProxy.imageTag }}"
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
           name: bots-http
