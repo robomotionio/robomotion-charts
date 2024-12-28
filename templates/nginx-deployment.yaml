@@ -23,6 +23,7 @@ spec:
           name: nginx-config
       containers:
       - image: "{{ .Values.nginx.image }}:{{ .Values.nginx.imageTag }}"
+        imagePullPolicy: IfNotPresent
         name: {{ template "robomotion.nginx.fullname" . }}
         volumeMounts:
         - name: {{ template "robomotion.minio.fullname" . }}

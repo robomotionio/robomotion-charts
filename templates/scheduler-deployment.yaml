@@ -21,6 +21,7 @@ spec:
       containers:
       - name: {{ template "robomotion-scheduler.fullname" . }}
         image: "{{ .Values.scheduler.image }}:{{ .Values.scheduler.imageTag }}"
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           name: grpc

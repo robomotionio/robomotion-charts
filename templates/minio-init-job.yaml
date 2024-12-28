@@ -12,7 +12,7 @@ spec:
       containers:
         - name: set-bucket-policy
           image: "{{ .Values.onpremInit.image }}:{{ .Values.onpremInit.imageTag }}"
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           command: ["/bin/sh"]
           args:
             - -c
