@@ -16,13 +16,11 @@ spec:
           command: ["/bin/sh"]
           args:
             - -c
-            - >
-              # Wait for MinIO to be ready
-              until curl -s http://robomotion-minio.default.svc.cluster.local:9000/minio/health/ready; do
-                echo "Waiting for MinIO to be ready..."
+            - | 
+              until mc alias set robominio http://robomotion-minio.default.svc.cluster.local:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY}; do
+                echo "Retrying MinIO alias setup..."
                 sleep 5
-              done
-              mc alias set robominio http://robomotion-minio.default.svc.cluster.local:9000 ${MINIO_ACCESS_KEY} ${MINIO_SECRET_KEY} &&
+              done &&
               mc anonymous set public robominio/applications &&   
               echo "API_URL=https://$ROBOMOTION_HOST_NAME/api" > /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&
               echo "WS_URL=https://$ROBOMOTION_HOST_NAME" >> /tmp/7c07607d-45e7-4fc2-b1dc-7806edd1c39e/assets/.env &&                            
