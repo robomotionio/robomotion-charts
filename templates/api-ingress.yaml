@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: {{ template "robomotion-api.fullname" . }}
   annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: default-http-redirect@kubernetescrd
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}

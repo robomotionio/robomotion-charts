@@ -293,7 +293,7 @@ app:
   ingress:
     path: /mq/ # (.*) <- this does not work for traefik - we handle it with rewrite middleware
     annotations:
-      traefik.ingress.kubernetes.io/router.middlewares: default-rewrite-mq@kubernetescrd
+      traefik.ingress.kubernetes.io/router.middlewares: default-rewrite-mq@kubernetescrd,default-http-redirect@kubernetescrd
       traefik.ingress.kubernetes.io/websocket: "true"    
       nginx.org/websocket-services: "ws-svc"
       nginx.ingress.kubernetes.io/rewrite-target: /$1

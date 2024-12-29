@@ -9,7 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
     nginx.ingress.kubernetes.io/proxy-body-size: 128m
     nginx.ingress.kubernetes.io/upstream-vhost: {{ template "robomotion.minio.host" . }}
-    traefik.ingress.kubernetes.io/router.middlewares: default-rewrite-objects@kubernetescrd,default-set-host-header@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: default-http-redirect@kubernetescrd,default-rewrite-objects@kubernetescrd,default-set-host-header@kubernetescrd
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
