@@ -25,10 +25,11 @@ spec:
   - host: {{ $host.name | quote }}
     http:
       paths:
-      - backend:
+      - path: {{ .Values.minio.ingress.path }}
+        pathType: Prefix
+        backend:
           service:
             name: {{ template "robomotion.minio.fullname" . }}
             port:
               number: 9000
-        path: {{ .Values.minio.ingress.path }}
 {{- end }}
