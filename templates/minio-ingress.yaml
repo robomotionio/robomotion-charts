@@ -9,6 +9,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: {{ $host.tls | quote }}
     nginx.ingress.kubernetes.io/proxy-body-size: 128m
     nginx.ingress.kubernetes.io/upstream-vhost: {{ template "robomotion.minio.host" . }}
+    traefik.ingress.kubernetes.io/router.middlewares: default-rewrite-objects@kubernetescrd,default-set-host-header@kubernetescrd
 {{- if .Values.certmanager.enabled }}
     cert-manager.io/issuer: "{{ .Release.Name }}-issuer"
 {{- end }}
@@ -24,12 +25,11 @@ spec:
   - host: {{ $host.name | quote }}
     http:
       paths:
-      - path: {{ .Values.minio.ingress.path }}/?(.*)
+      - path: {{ .Values.minio.ingress.path }}
         pathType: Prefix
         backend:
           service:
             name: {{ template "robomotion.minio.fullname" . }}
             port:
               number: 9000
-
 {{- end }}

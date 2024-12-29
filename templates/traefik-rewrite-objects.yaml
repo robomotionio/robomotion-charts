@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: rewrite-objects
+  namespace: default
+spec:
+  replacePathRegex:
+    regex: ^/objects/?(.*)
+    replacement: /$1
