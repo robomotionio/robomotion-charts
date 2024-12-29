@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - {{ $host.name }}
-    secretName: wildcard-robomotion-letsencrypt
+    secretName: {{ $host.tlsSecret }}
   rules:
   - host: {{ .Values.api.ingress.hostname | default $host.name }}
     http:
