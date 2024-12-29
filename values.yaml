@@ -14,7 +14,7 @@ ingress:
   annotations:
 
   spec:
-    ingressClassName: nginx
+    ingressClassName: traefik
 
   hosts:
     - name: robomotion.local
@@ -139,11 +139,6 @@ clickhouse:
   keeper:
     enabled: false
 
-nginx:
-  name: nginx
-  image: nginx
-  imageTag: 1.27.3
-
 minio:
   ## Use the minio chart dependency.
   ##
@@ -173,19 +168,6 @@ minio:
     ## Persistent Volume Storage Size.
     ##
     size: 10Gi
-
-# https://cert-manager.io/docs/configuration/acme/
-# solver should be http01 or dns01
-certmanager:
-  enabled: false
-  email:
-  solver: http01
-
-nginx-ingress:
-  enabled: true
-  controller:
-    publishService:
-      enabled: true
 
 smtp:
   enabled: false
