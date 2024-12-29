@@ -48,6 +48,16 @@ service:
   type: ClusterIP
   port: 80
 
+rabbitmq:
+
+  resources:
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    limits:
+      cpu: 1500m
+      memory: 2048Mi
+
 ## Configuration values for the postgresql dependency.
 ## Ref: https://github.com/helm/charts/blob/master/stable/postgresql/README.md
 ##
@@ -56,6 +66,15 @@ postgresql:
   ## Use the PostgreSQL chart dependency.
   ##
   enabled: true
+
+  primary:
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2Gi
+      limits:
+        cpu: 2000m
+        memory: 3Gi
 
   auth:
     ### PostgreSQL User to create.
@@ -102,7 +121,7 @@ postgresql:
 
     ## Persistent Volume Storage Size.
     ##
-    size: 2Gi
+    size: 10Gi
 
 redis:
   ## Use the redis chart dependency.
@@ -114,11 +133,18 @@ redis:
     persistence:
       enabled: true
       storageClass: ""
-      size: 1Gi
+      size: 2Gi
     service:
       type: ClusterIP
       ports:
   master:
+    resources:
+      limits:
+        cpu: 1000m
+        memory: 1024Mi
+      requests:
+        cpu: 250m
+        memory: 256Mi  
     configuration: |-
       notify-keyspace-events "g$E"
 
@@ -128,9 +154,16 @@ clickhouse:
     port: 9000
   persistence:
     enabled: true
-    size: 8Gi
+    size: 10Gi
     accessModes:
       - ReadWriteOnce
+  resources:
+    limits:
+      cpu: 1500m
+      memory: 2048Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
   resourcePreset: small
   shards: 1
   replicaCount: 1
@@ -143,6 +176,15 @@ minio:
   ## Use the minio chart dependency.
   ##
   enabled: true
+
+  resources:
+    limits:
+      cpu: 1500m
+      memory: 2048Mi
+    requests:
+      cpu: 500m
+      memory: 512Mi
+
   serviceType: ClusterIP
   ingress:
     path: /objects
@@ -157,9 +199,7 @@ minio:
     name: images
   defaultApplicationBucket:
     name: applications
-  resources:
-    requests:
-      memory: 512Mi
+
   persistence:
     enabled: true
     storageClass:
