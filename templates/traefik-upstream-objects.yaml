@@ -1,0 +1,9 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: set-host-header
+  namespace: default
+spec:
+  headers:
+    customRequestHeaders:
+      Host: {{ template "robomotion.minio.host" . }}
